@@ -18,12 +18,14 @@ Player::Player()
   this->jFrameHeight = 400;
 }
 
-Player::Player(float positionX, float positionY, float length, float height, float hp, float jFrameLength, float jFrameHeight)
+Player::Player(float positionX, float positionY, float positionZ, float length, float height, float depth, float hp, float jFrameLength, float jFrameHeight)
 {
   this->positionX = positionX;
   this->positionY = positionY;
+  this->positionZ = positionZ;
   this->length = length;
   this->height = height;
+  this->depth = depth;
   this->hp = hp;
   this->jFrameLength = jFrameLength;
   this->jFrameHeight = jFrameHeight;
@@ -93,6 +95,11 @@ float Player::getLength()
 float Player::getHeight()
 {
   return this->height;
+}
+
+float Player::getDepth()
+{
+  return this->depth;
 }
 
 void Player::drawPlayer()
