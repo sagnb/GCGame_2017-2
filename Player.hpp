@@ -11,6 +11,7 @@ class Player
   private:
     float positionX;
     float positionY;
+    float positionZ;
     float length;
     float height;
     float depth;
@@ -21,7 +22,7 @@ class Player
   public:
     Player();
     ~Player();
-    Player(float positionX, float positionY, float length, float height, float depth, float hp, float jFrameLength, float jFrameHeight);
+    Player(float positionX, float positionY, float positionZ, float length, float height, float depth, float hp, float jFrameLength, float jFrameHeight);
     void moveUp(bool up);
     void moveDown(bool down);
     void moveLeft(bool left);

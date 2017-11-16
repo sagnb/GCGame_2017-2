@@ -109,13 +109,17 @@ float Player::getDepth()
 
 void Player::drawPlayer()
 {
+  for (int i = this->getPositionZ(); i <= this->getPositionZ()+this->depth; i++)
+  {
+      glColor4ub(255, 0, 0, 255); //vermelho
   glBegin(GL_QUADS);
 
     //glVertex2f(x, y);
-    glVertex3f(this->getPositionX(), this->getPositionY(), this->getPositionZ());
-    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY(), this->getPositionZ());
-    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY()+this->getHeight(), this->getPositionZ());
-    glVertex3f(this->getPositionX(), this->getPositionY()+this->getHeight(), this->getPositionZ());
+    glVertex3f(this->getPositionX(), this->getPositionY(), i);
+    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY(), i);
+    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY()+this->getHeight(), i);
+    glVertex3f(this->getPositionX(), this->getPositionY()+this->getHeight(), i);
 
   glEnd();
+  }
 }

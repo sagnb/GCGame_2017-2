@@ -57,13 +57,12 @@ int main(int argc, char *argv[])
 
   bool left = false; //esquerda
   bool right = false; //direita
-  bool up = false; //cima
-  bool down = false; //baixo
+
 
   //loop Game
   cout << "Executando" << endl;
   Player *player;
-  player = new Player(300, 300, 0, 30, 50, 10, 100, length, height);
+  player = new Player(300, 350, 0, 30, 50, 10, 100, length, height);
 
   while(exec)
   {
@@ -86,14 +85,7 @@ int main(int argc, char *argv[])
         {
           right = true;
         }
-        if(event.key.keysym.sym == SDLK_w)//start move to up
-        {
-          up = true;
-        }
-        if(event.key.keysym.sym == SDLK_s)//start move to down
-        {
-          down = true;
-        }
+
       }
       //if keyup
       if(event.type == SDL_KEYUP)
@@ -106,14 +98,6 @@ int main(int argc, char *argv[])
         {
           right = false;
         }
-        if(event.key.keysym.sym == SDLK_w)//stop move to up
-        {
-          up = false;
-        }
-        if(event.key.keysym.sym == SDLK_s)//stop move to down
-        {
-          down = false;
-        }
         if(event.key.keysym.sym == SDLK_ESCAPE)//stop exec
         {
           exec = false;
@@ -122,8 +106,7 @@ int main(int argc, char *argv[])
     }
     //logic part
       //move part
-      player->moveUp(up);
-      player->moveDown(down);
+
       player->moveLeft(left);
       player->moveRight(right);
 
@@ -141,20 +124,12 @@ int main(int argc, char *argv[])
     //glColor3ub(R, G, B) 0 A 255
     //glColor4ub(R, G, B, ALPHA) 0 A 255
 
-    glColor4ub(255, 255, 255, 255);
-    glBegin(GL_QUADS);
-      glVertex2f(150, 50);
-      glVertex2f(length-150, 50);
-      glVertex2f(length-150, height-50);
-      glVertex2f(150, height-50);
-    glEnd();
 
-    glColor4ub(255, 0, 0, 255); //vermelho
 
     //draw
     //glBegin();//GL_POINTS, GL_LINES, GL_LINES_LOOP, GL_QUADS, GL_TRIANGLES, GL_POLIGON
     player->drawPlayer();
-    drawCircle(5);
+
 
     //close matrix
     glPopMatrix();
