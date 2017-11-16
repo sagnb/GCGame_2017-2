@@ -22,7 +22,7 @@ Player::Player(float positionX, float positionY, float positionZ, float length, 
 {
   this->positionX = positionX;
   this->positionY = positionY;
-  this->positionZ = positionZ;
+  this->positionZ = positionZ; 
   this->length = length;
   this->height = height;
   this->depth = depth;
