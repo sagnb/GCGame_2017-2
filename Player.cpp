@@ -22,7 +22,7 @@ Player::Player(float positionX, float positionY, float positionZ, float length, 
 {
   this->positionX = positionX;
   this->positionY = positionY;
-  this->positionZ = positionZ; 
+  this->positionZ = positionZ;
   this->length = length;
   this->height = height;
   this->depth = depth;
@@ -82,6 +82,11 @@ float Player::getPositionY()
   return this->positionY;
 }
 
+float Player::getPositionZ()
+{
+  return this->positionZ;
+}
+
 float Player::getPositionX()
 {
   return this->positionX;
@@ -107,10 +112,10 @@ void Player::drawPlayer()
   glBegin(GL_QUADS);
 
     //glVertex2f(x, y);
-    glVertex2f(this->getPositionX(), this->getPositionY());
-    glVertex2f(this->getPositionX()+this->getLength(), this->getPositionY());
-    glVertex2f(this->getPositionX()+this->getLength(), this->getPositionY()+this->getHeight());
-    glVertex2f(this->getPositionX(), this->getPositionY()+this->getHeight());
+    glVertex3f(this->getPositionX(), this->getPositionY(), this->getPositionZ());
+    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY(), this->getPositionZ());
+    glVertex3f(this->getPositionX()+this->getLength(), this->getPositionY()+this->getHeight(), this->getPositionZ());
+    glVertex3f(this->getPositionX(), this->getPositionY()+this->getHeight(), this->getPositionZ());
 
   glEnd();
 }

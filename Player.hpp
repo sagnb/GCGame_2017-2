@@ -28,6 +28,7 @@ class Player
     void moveRight(bool right);
     float getPositionX();
     float getPositionY();
+    float getPositionZ();
     float getLength();
     float getHeight();
     float getDepth();

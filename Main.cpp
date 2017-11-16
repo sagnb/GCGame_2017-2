@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
   //loop Game
   cout << "Executando" << endl;
   Player *player;
-  player = new Player(300, 300, 30, 50, 100, length, height);
+  player = new Player(300, 300, 0, 30, 50, 10, 100, length, height);
 
   while(exec)
   {
