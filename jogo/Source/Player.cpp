@@ -95,3 +95,26 @@ void Player::moveEsq()
 {
     this->x--;
 }
+
+bool Player::IntervaloX(float x){
+  if(this->getX() <= x && (this->getX() + this->getLargura() >= x){
+      return true;
+  }
+  return false;
+}
+
+bool Player::IntervaloY(float y){
+  if(this->getY() <= y && (this->getY() + this->geAltura() >= y){
+    //ESTA NO INTERVALO
+      return true;
+  }
+  return false;
+}
+void Player::Colisao(Cubo *cubo){
+  if(IntervaloX(cubo->getX()) && IntervaloY(cubo->getY())){
+      if(IntervaloX(cubo->getX()+cubo->getLargura()) && IntervaloY(cubo->getY() + cubo->getAltura())){
+            setVida(false);
+      }
+  }
+
+}

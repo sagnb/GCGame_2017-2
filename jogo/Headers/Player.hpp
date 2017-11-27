@@ -34,4 +34,7 @@ class Player()
         void setVida(bool vida);
         void moveDir();
         void moveEsq();
+        bool IntervaloX(float x);
+        bool IntervaloY(float y);
+        void Colisao(Cubo *cubo);
 };

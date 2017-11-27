@@ -29,5 +29,5 @@ class Cubo()
         void MoveInimigo();
         bool IntervaloX(float x);
         bool IntervaloY(float y);
-        void Colisao(Bala *bala, Player *player);
+        void Colisao(Bala *bala);
 };
