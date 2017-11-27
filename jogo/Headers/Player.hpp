@@ -3,7 +3,8 @@
 
 #include "Object.h"
 
-class Player(){
+class Player()
+{
       private:
           Object nave;
           float x;
@@ -12,8 +13,20 @@ class Player(){
           float largura;
           float altura;
           float profundidade;
-          
 
+      public:
+          public Player()
+          {
+
+          }
+
+          public Player(Object nave)
+          {
+              this->nave = nave;
+              this->x = 0;
+              this->y = 15;
+              this->z = 200;
+          }
 
 
 }
