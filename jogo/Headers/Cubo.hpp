@@ -13,51 +13,15 @@ class Cubo()
         float lado; // LARGURA / ALTURA / PROFUNDIDADE
 
     public:
-        Cubo(){
-
-        }
-
-        Cubo(float x, float y, float z, float lado)
-        {
-            this->x = x;
-            this->y = y;
-            this->z = z;
-            this->lado = lado;
-        }
-
-        float Cubo::getX(){
-            return this->x;
-        }
-
-        float Cubo::getY(){
-            return this->y;
-        }
-
-        float Cubo::getZ(){
-            return this->z;
-        }
-
-        float Cubo::getLado(){
-            return this->lado;
-        }
-
-        void Cubo::setX( float x){
-            this->x = x;
-        }
-
-        void Cubo::setY( float y){
-            this->y = y;
-        }
-
-        void Cubo::setZ( float z){
-            this->z = z;
-        }
-
-        void Cubo::setLado(float lado){
-            this->lado = lado;
-        }
-
-        void Cubo::MoveInimigo(){
-            this->y--;
-        }
+        Cubo();
+        Cubo(float x, float y, float z, float lado);
+        float getX();
+        float getY();
+        float getZ();
+        float getLado();
+        void setX( float x);
+        void setY( float y);
+        void setZ( float z);
+        void setLado(float lado);
+        void MoveInimigo();
 }
