@@ -12,6 +12,7 @@ Cubo(float x, float y, float z, float lado)
     this->y = y;
     this->z = z;
     this->lado = lado;
+    this->vida = true;
 }
 
 float Cubo::getX(){
@@ -28,6 +29,14 @@ float Cubo::getZ(){
 
 float Cubo::getLado(){
     return this->lado;
+}
+
+bool Cubo::getVida(){
+    return this->vida;
+}
+
+void Cubo::setVida(bool vida){
+    this->vida = vida;
 }
 
 void Cubo::setX( float x){
@@ -48,4 +57,27 @@ void Cubo::setLado(float lado){
 
 void Cubo::MoveInimigo(){
     this->y--;
+}
+
+bool Cubo::IntervaloX(float x){
+    if(this->getX() <= x && (this->getX() + this->getLado() >= x){
+        return true;
+    }
+    return false;
+
+}
+bool Cubo::IntervaloY(float y){
+    if(this->getY() <= y && (this->getY() + this->getLado() >= y){
+      //ESTA NO INTERVALO
+        return true;
+    }
+    return false;
+}
+
+void Cubo::Colisao(Bala *bala){
+    if(IntervaloX(bala->getX()) && IntervaloY(bala->getY())){
+        if(IntervaloX(bala->getX()+bala->getLargura()) && IntervaloY(bala->getY() + bala->getAltura())){
+              setVida(false);
+        }
+    }
 }

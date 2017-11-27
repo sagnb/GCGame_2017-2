@@ -11,6 +11,7 @@ class Cubo()
         float y;
         float z;
         float lado; // LARGURA / ALTURA / PROFUNDIDADE
+        bool vida;
 
     public:
         Cubo();
@@ -19,9 +20,14 @@ class Cubo()
         float getY();
         float getZ();
         float getLado();
+        bool getVida();
         void setX( float x);
         void setY( float y);
         void setZ( float z);
         void setLado(float lado);
+        void setVida(bool vida);
         void MoveInimigo();
-}
+        bool IntervaloX(float x);
+        bool IntervaloY(float y);
+        void Colisao(Bala *bala, Player *player);
+};

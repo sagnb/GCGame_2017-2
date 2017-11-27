@@ -29,6 +29,14 @@ float Player::getY()
     return this->y;
 }
 
+bool Player::getVida(){
+    return this->vida;
+}
+
+void Player::setVida(bool vida){
+    this->vida = vida;
+}
+
 float Player::getZ()
 {
     return this->z;

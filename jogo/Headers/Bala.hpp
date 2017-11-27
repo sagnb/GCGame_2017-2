@@ -30,4 +30,4 @@ class Bala()
       void setLargura(float lar);
       void setAltura(float alt);
       void setProfundidade(float pro);
-}
+};
