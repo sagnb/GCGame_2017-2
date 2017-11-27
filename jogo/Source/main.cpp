@@ -34,12 +34,12 @@ void init(void){
 	glShadeModel(GL_SMOOTH);
 	//glShadeModel(GL_FLAT);
 	glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
-	glEnable(GL_DEPTH_TEST);	
-	
+	glEnable(GL_DEPTH_TEST);
+
 	glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	
+
+
 	glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
@@ -57,7 +57,7 @@ void reshape( int w, int h ){
 void timer(int value){
     theta+=1.5;
     if (theta >= 360) theta=0.0;
-    glutPostRedisplay();      
+    glutPostRedisplay();
     glutTimerFunc(10, timer, 0);
 }
 
@@ -76,44 +76,44 @@ void DefineLuz(){
     GLfloat dirLuz[] = {0.0, 0.0, 0.0}; //direcao da luz
     GLfloat angulo = 90.0;// angulo de abertura(]0º,90º[ ou 180º)
     GLfloat foco = 10; //grau de concentração(]0,120[)
-    
+
     posLuz[0]=distancia*sin(3.14*theta/180.0);
     posLuz[1]=15.0;
     posLuz[2]=distancia*cos(3.14*theta/180.0);
-    
+
     dirLuz[0] = 0 - posLuz[0];
     dirLuz[1] = 0;
     dirLuz[2] = 0 - posLuz[2];
-    
+
     //normalize(dirLuz);
-    
+
     //Inicia com os parametros setados
     glLightfv(GL_LIGHT0, GL_DIFFUSE, corLuz); // Define a in    tensidade do componenete difuso da luz
     glLightfv(GL_LIGHT0, GL_SPECULAR, corLuz); // Define a intensidade do componenete especular da luz
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angulo); // Define o angulo de abertura da luz
     glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, foco); //Define a concentração da luz na area do cutoff
-    
+
     glLightfv(GL_LIGHT0, GL_POSITION, posLuz); // Define a posição da luz no ambiente
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, dirLuz); // Define a direção da luz com base na posição
-    
+
     //atenuação da luz
     glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);
     glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.02);
     glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.0);
-    
+
     //inicializacao
     glEnable(GL_LIGHT0);
-    
+
     glPushMatrix();
         glColor4f(0.5f,0.0f,0.0f, 1.0f);
         glTranslatef(posLuz[0],posLuz[1],posLuz[2]);
         glutSolidSphere(1, 10, 10);
     glPopMatrix();
     //cubo(posLuz[0],posLuz[1],posLuz[2], 0.5);
-    
+
 
 }
-    
+
 void PosicUser(){
 	// Set the clipping volume
 
@@ -129,27 +129,27 @@ void PosicUser(){
 
 void display( void )
 {
-    
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-    
+
     PosicUser();
 	DefineLuz();
-	
+
 
 	plano(500,5, 0.0);
-	
-	
-    
+
+
+
     glPushMatrix();
         glTranslatef(ppos,15,-200);
 	    glScalef(4,4,4);
 	    glColor4f(0.0f,0.0f,0.3f, 1.0f);
 	    objeto->glObject();
-	    
+
 	glPopMatrix();
-	
+
 	glPushMatrix();
         glEnable( GL_TEXTURE_2D );
         glTranslatef(0,15,100);
@@ -159,10 +159,10 @@ void display( void )
 	    cubo();
 	    glDisable( GL_TEXTURE_2D );
 	glPopMatrix;
-    	
-	
 
-	
+
+
+
 	glutSwapBuffers();
 }
 
@@ -186,8 +186,8 @@ void keyboard ( unsigned char key, int x, int y ){
             if(angle<0) angle = 360;
         break;
         default:
-            
-            
+
+
         break;
     }
 }
@@ -197,18 +197,18 @@ int main(int argc, char** argv){
 
     glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	
+
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
-	
+
 	glutInitWindowPosition (0,0);
 	glutInitWindowSize(700, 500);
 	glutCreateWindow("Leitura de OBJ");
-	
+
     objeto->readObject("./Accets/ship.obj");
     texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 	init();
-	
+
 	glutDisplayFunc ( display );
 	glutReshapeFunc ( reshape );
 	glutKeyboardFunc ( keyboard );
@@ -239,9 +239,9 @@ void plano(int tam, int passo, float y){
     glPopMatrix();
 }
 void cubo () {
-     
-    glBindTexture( GL_TEXTURE_2D, texture[0]); 
-    glBegin (GL_POLYGON);
+
+    glBindTexture( GL_TEXTURE_2D, texture[0]);
+    glBegin (GL_QUADS);//POLYGON);
           glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
@@ -249,40 +249,40 @@ void cubo () {
     glEnd();
 
      glBindTexture( GL_TEXTURE_2D, texture[0]);
-    glBegin (GL_POLYGON);
+    glBegin (GL_QUADS);//POLYGON);
         glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, 5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(5, -5, 5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, 5.0);
           glTexCoord2f(1.0, 0.0); glVertex3f(-5, 5, 5.0);
     glEnd();
 
-    
-     glBindTexture( GL_TEXTURE_2D, texture[0]); 
+
+     glBindTexture( GL_TEXTURE_2D, texture[0]);
      glBegin (GL_QUADS);
           glTexCoord2f(0.0, 0.0); glVertex3f(5.0,-5.0, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(5.0, 5.0, -5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
           glTexCoord2f(1.0, 0.0); glVertex3f(5.0,-5.0, 5.0);
     glEnd();
-   
-     glBindTexture( GL_TEXTURE_2D, texture[0]); 
+
+     glBindTexture( GL_TEXTURE_2D, texture[0]);
      glBegin (GL_QUADS);
          glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, -5, 5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);  
-         
+          glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
+
     glEnd();
-    
-     glBindTexture( GL_TEXTURE_2D, texture[0]); 
+
+     glBindTexture( GL_TEXTURE_2D, texture[0]);
      glBegin (GL_QUADS);
           glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, -5.0, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(5.0, -5.0, -5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5.0, -5.0, 5.0);
           glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, -5.0, 5.0);
     glEnd();
-   
-     glBindTexture( GL_TEXTURE_2D, texture[0]); 
+
+     glBindTexture( GL_TEXTURE_2D, texture[0]);
      glBegin (GL_QUADS);
           glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
@@ -302,7 +302,7 @@ GLuint loadTexture(char* nome, int width, int height){
         cout << "Missing file!" << endl;
         exit(-1);
     }
-    
+
     unsigned char *data = new unsigned char[width * height * 3];
 
     getline(iFile, val, '\n');
@@ -315,22 +315,22 @@ GLuint loadTexture(char* nome, int width, int height){
         data[i]=(unsigned char)red;
         data[i+1]=(unsigned char)green;
         data[i+2]=(unsigned char)blue;
-        
+
     }
     iFile.close();
-    
+
     glGenTextures(1, &texture[0]); // gera a textura vazia
     glBindTexture(GL_TEXTURE_2D, texture[0]); //define a textura como a atual
-    
+
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);// ativa repretição horizontal
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);// ativa a repetição vertical
-    
+
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);// Ativam a interpolação
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);               //
-    
+
     gluBuild2DMipmaps(GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);//mapeia o arquivo para a textura
-    
-    
+
+
     delete []data;
     return texture[0];
 }
@@ -342,4 +342,3 @@ void normalize(float* init){
     init[1] = init[1]/mod;
     init[2] = init[2]/mod;
 }
-
