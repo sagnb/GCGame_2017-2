@@ -10,7 +10,7 @@ using namespace std;
 Player::Player()
 {
   this->positionX = 0;
-  this->positionY = 0;
+  this->positionY = 0;//gfgdfgdfg
   this->length = 30;
   this->height = 50;
   this->hp = 100;
