@@ -1,5 +1,6 @@
 
 #include "../Headers/Player.hpp"
+#include "../Headers/Player.hpp"
 
 using namespace std;
 
@@ -8,7 +9,7 @@ Player()
 
 }
 
-Player(Object nave)
+Player(Object *nave)
 {
     this->nave = nave;
     this->x = 0;

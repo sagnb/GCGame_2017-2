@@ -6,7 +6,7 @@
 class Player()
 {
       private:
-          Object nave;
+          Object *nave;
           float x;
           float y;
           float z;
@@ -20,7 +20,7 @@ class Player()
 
       public:
         Player();
-        Player(Object nave);
+        Player(Object *nave);
         float getX();
         float getY();
         float getZ();
