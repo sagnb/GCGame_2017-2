@@ -2,22 +2,33 @@
 #include "../Headers/Player.hpp"
 #include "../Headers/Player.hpp"
 
+#include "GL/glut.h"
+
 using namespace std;
 
-Player()
+Player::Player()
 {
 
 }
 
-Player(Object *nave)
+Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ)
 {
-    this->nave = nave;
-    this->x = 0;
-    this->y = 15;
-    this->z = 200;
-    this->largura = 4;
-    this->altura = 4;
-    this->profundidade = 4;
+    this->readObject(nomeArquivo);
+    this->setEscalaX(escalaX);
+    this->setEscalaY(escalaY);
+    this->setEscalaZ(escalaZ);
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLargura(this->nave->getLargura());
+    this->setAltura(this->nave->getAltura());
+    this->setProfundidade(this->nave->getProfundidade());
+    this->setVida(true);
+}
+
+Player::~Player()
+{
+  delete(nave);
 }
 
 float Player::getX()
@@ -74,17 +85,17 @@ void Player::setZ(float z)
 
 void Player::setLargura(float lar)
 {
-    this->largura = lar;
+    this->largura = lar * this->getEscalaX();
 }
 
 void Player::setAltura(float alt)
 {
-    this->altura = alt;
+    this->altura = alt * this->getEscalaY();
 }
 
 void Player::setProfundidade(float pro)
 {
-    this->profundidade = pro;
+    this->profundidade = pro * this->getEscalaZ();
 }
 
 void Player::moveDir()
@@ -123,7 +134,12 @@ void Player::Colisao(Cubo *cubo){
 
 void Player::drawPlayer()
 {
-  //FAZER
+  glPushMatrix();
+      glTranslatef(ppos,15,-200);
+     glScalef(4,4,4);
+     glColor4f(0.0f,0.0f,0.3f, 1.0f);
+     objeto->glObject();
+  glPopMatrix();
 }
 
 float getEscalaX()
@@ -154,4 +170,10 @@ float setEscalaY(float escalaY)
 float setEscalaZ(float escalaZ)
 {
   this->escalaZ = escalaZ;
+}
+
+void Player::readObject(char* nomeArquivo)
+{
+  nave = new Object();
+  this->nave->readObject(nomeArquivo);
 }

@@ -3,6 +3,8 @@
 
 #include "Object.h"
 
+#include "GL/glut.h"
+
 class Player()
 {
       private:
@@ -20,7 +22,8 @@ class Player()
 
       public:
         Player();
-        Player(Object *nave);
+        Player(char* nomeArquivo);
+        ~Player();
         float getX();
         float getY();
         float getZ();
@@ -47,4 +50,5 @@ class Player()
         float setEscalaX(float escalaX);
         float setEscalaY(float escalaY);
         float setEscalaZ(float escalaZ);
+        voi readObject(char* nomeArquivo);
 };
