@@ -2,6 +2,7 @@
 #include "../Headers/Ponto.h"
 #include "../Headers/Aresta.h"
 #include "../Headers/image.hpp"
+#include "../Headers/Player.hpp"
 
 #include <iostream>
 #include "GL/glut.h"
@@ -102,7 +103,7 @@ void DefineLuz(){
 
     //inicializacao
     glEnable(GL_LIGHT0);
-    
+
     //definição dos parametros da luz 0
     GLfloat posLuz1[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
     GLfloat corLuz1[] = {1.0, 1.0, 1.0}; //cor e intensidade da luz
@@ -175,7 +176,7 @@ void display( void )
 
 
 
-    glPushMatrix();
+   glPushMatrix();
         glTranslatef(ppos,15,-200);
 	    glScalef(4,4,4);
 	    glColor4f(0.0f,0.0f,0.3f, 1.0f);
