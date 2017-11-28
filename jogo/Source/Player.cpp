@@ -1,7 +1,4 @@
-#include "../Headers/Player.hpp"
-#include "../Headers/Player.hpp"
 #include "../Headers/Cubo.hpp"
-#include "../Headers/Bala.hpp"
 
 #include "GL/glut.h"
 

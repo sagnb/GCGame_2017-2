@@ -1,14 +1,13 @@
-#include <iostream>
-#include <stdlib.h>
 #include "../Headers/Bala.hpp"
 #include "../Headers/Object.h"
 
+#include <iostream>
+#include <stdlib.h>
 #include "GL/glut.h"
 
 using namespace std;
 
 Bala::Bala(){
-
 }
 
 Bala::Bala(char* nome, float x, float y, float z, int vel)

@@ -3,6 +3,7 @@
 
 #include "Player.hpp"
 #include "Bala.hpp"
+class Player;
 
 #include <iostream>
 #include <cmath>

@@ -1,6 +1,4 @@
 #include "../Headers/Cubo.hpp"
-#include "../Headers/Player.hpp"
-#include "../Headers/Bala.hpp"
 
 #include <iostream>
 #include <cmath>
