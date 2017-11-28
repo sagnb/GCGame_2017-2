@@ -20,6 +20,7 @@ Bala::Bala(char* nome, float x, float y, float z, int vel)
       this->setAltura(1);
       this->setProfundidade(1);
       this->setVelocidade(vel);
+      this->drawBala();
 }
 
 Bala::~Bala(){
@@ -98,7 +99,7 @@ void Bala::drawBala()
 {
   glPushMatrix();
      glTranslatef(this->getX(), this->getY(), this->getZ());
-     glScalef(20,20,20);
+     glScalef(2, 2, 2);
      glColor4f(0.0f,0.0f,0.3f, 1.0f);
      this->bala->glObject();
   glPopMatrix();

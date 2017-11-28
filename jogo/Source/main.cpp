@@ -21,7 +21,6 @@ int ppos = 0;
 GLuint texture[3];
 
 Object* objeto = new Object;
-Object* objB = new Object;
 Player *nave;
 Bala *balas;
 
@@ -206,9 +205,8 @@ void keyboard ( unsigned char key, int x, int y ){
         case 'd':
             ppos-=2;
         break;
-				case 'p': //espaco? enter?
-						//balas = new Bala("./Accets/bala.obj", 0, 0, 0, 5);
-						//balas->drawBala();
+				case ' ': //espaco
+						balas = new Bala("../Accets/bala.obj", ppos, 0, -200, 2);
 				break;
         default:
 
@@ -225,12 +223,11 @@ int main(int argc, char** argv){
     glEnable( GL_BLEND );
 
 	glutInitWindowPosition (0,0);
-	glutInitWindowSize(700, 500);
+	glutInitWindowSize(600, 500);
 	glutCreateWindow("Leitura de OBJ");
 
     objeto->readObject("./Accets/ship.obj");
 
-		//objeto->readObject("./Accets/bala.obj")
 
 		//guilherme->FAZENDO()______________________________
 
