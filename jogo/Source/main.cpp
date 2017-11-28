@@ -273,7 +273,7 @@ void plano(int tam, int passo, float y){
 void cubo () {
 
     glBindTexture( GL_TEXTURE_2D, texture[0]);
-    glBegin (GL_QUADS);//POLYGON);
+    glBegin (GL_QUADS);
           glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
@@ -281,7 +281,7 @@ void cubo () {
     glEnd();
 
      glBindTexture( GL_TEXTURE_2D, texture[0]);
-    glBegin (GL_QUADS);//POLYGON);
+    glBegin (GL_QUADS);
         glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, 5.0);
           glTexCoord2f(0.0, 1.0); glVertex3f(5, -5, 5.0);
           glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, 5.0);
