@@ -2,6 +2,8 @@
 #define CUBO_H
 
 #include "GL/glut.h"
+#include "Player.hpp"
+#include "Bala.hpp"
 
 class Cubo
 {
