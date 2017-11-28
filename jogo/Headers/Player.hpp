@@ -1,11 +1,12 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYERJOGO_H
+#define PLAYERJOGO_H
 
 #include "Object.h"
+#include "Cubo.hpp"
 
 #include "GL/glut.h"
 
-class Player()
+class Player
 {
       private:
           Object *nave;
@@ -22,7 +23,7 @@ class Player()
 
       public:
         Player();
-        Player(char* nomeArquivo);
+        Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ);
         ~Player();
         float getX();
         float getY();
@@ -50,5 +51,7 @@ class Player()
         float setEscalaX(float escalaX);
         float setEscalaY(float escalaY);
         float setEscalaZ(float escalaZ);
-        voi readObject(char* nomeArquivo);
+        void readObject(char* nomeArquivo);
 };
+
+#endif
