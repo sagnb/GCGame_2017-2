@@ -110,6 +110,7 @@ bool Player::IntervaloY(float y){
   }
   return false;
 }
+
 void Player::Colisao(Cubo *cubo){
   if(IntervaloX(cubo->getX()) && IntervaloY(cubo->getY())){
       if(IntervaloX(cubo->getX()+cubo->getLargura()) && IntervaloY(cubo->getY() + cubo->getAltura())){
@@ -117,4 +118,9 @@ void Player::Colisao(Cubo *cubo){
       }
   }
 
+}
+
+void Player::drawPlayer()
+{
+  //FAZER
 }

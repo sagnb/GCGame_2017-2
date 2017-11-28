@@ -13,6 +13,9 @@ class Bala()
         float largura;
         float altura;
         float profundidade;
+        //float escalaX;?????
+        //float escalaY;?????
+        //float escalaZ;?????
 
     public:
 
@@ -30,4 +33,5 @@ class Bala()
       void setLargura(float lar);
       void setAltura(float alt);
       void setProfundidade(float pro);
+      void drawBala();
 };

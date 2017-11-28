@@ -74,3 +74,8 @@ void Bala::setProfundidade(float pro)
 {
     this->profundidade = pro;
 }
+
+void Bala::drawBala()
+{
+  //FAZER
+}

@@ -14,6 +14,9 @@ class Player()
           float altura;
           float profundidade;
           bool vida;
+          //float escalaX;?????
+          //float escalaY;?????
+          //float escalaZ;?????
 
       public:
         Player();
@@ -37,4 +40,5 @@ class Player()
         bool IntervaloX(float x);
         bool IntervaloY(float y);
         void Colisao(Cubo *cubo);
+        void drawPlayer();
 };
