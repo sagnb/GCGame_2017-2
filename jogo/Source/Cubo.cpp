@@ -1,4 +1,4 @@
-#include "..Headers/Cubo.hpp"
+#include "../Headers/Cubo.hpp"
 
 using namespace std;
 
@@ -14,6 +14,8 @@ Cubo::Cubo(float x, float y, float z, float lado)
     this->lado = lado;
     this->vida = true;
 }
+
+Cubo::~Cubo()
 
 float Cubo::getX(){
     return this->x;

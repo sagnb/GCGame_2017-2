@@ -3,6 +3,7 @@
 #include "../Headers/Aresta.h"
 #include "../Headers/image.hpp"
 #include "../Headers/Player.hpp"
+#include "../Headers/Cubo.hpp"
 
 #include <iostream>
 #include "GL/glut.h"
@@ -20,6 +21,7 @@ int ppos = 0;
 GLuint texture[3];
 
 Object* objeto = new Object;
+Player *nave;
 
 
 void cubo ();
@@ -220,7 +222,6 @@ void keyboard ( unsigned char key, int x, int y ){
 
 
 int main(int argc, char** argv){
-
     glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 
@@ -232,6 +233,11 @@ int main(int argc, char** argv){
 	glutCreateWindow("Leitura de OBJ");
 
     objeto->readObject("./Accets/ship.obj");
+		//guilherme->FAZENDO()______________________________
+
+		//nave = new Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ)
+
+		//__________________________________________________
     texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 	init();
 

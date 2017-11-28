@@ -1,6 +1,7 @@
 
 #include "../Headers/Player.hpp"
 #include "../Headers/Player.hpp"
+#include "../Headers/Cubo.hpp"
 
 #include "GL/glut.h"
 
@@ -142,32 +143,32 @@ void Player::drawPlayer()
   glPopMatrix();
 }
 
-float getEscalaX()
+float Player::getEscalaX()
 {
   return this->escalaX;
 }
 
-float getEscalaY()
+float Player::getEscalaY()
 {
   return this->escalaY;
 }
 
-float getEscalaZ()
+float Player::getEscalaZ()
 {
   return this->escalaZ;
 }
 
-float setEscalaX(float escalaX)
+float Player::setEscalaX(float escalaX)
 {
   this->escalaX = escalaX;
 }
 
-float setEscalaY(float escalaY)
+float Player::setEscalaY(float escalaY)
 {
   this->escalaY = escalaY;
 }
 
-float setEscalaZ(float escalaZ)
+float Player::setEscalaZ(float escalaZ)
 {
   this->escalaZ = escalaZ;
 }
