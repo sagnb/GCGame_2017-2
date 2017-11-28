@@ -14,6 +14,10 @@ class Cubo
         float z;
         float lado; // LARGURA / ALTURA / PROFUNDIDADE
         bool vida;
+        float r;
+        float g;
+        float b;
+        float alpha;
 
     public:
         Cubo();
@@ -33,6 +37,16 @@ class Cubo
         bool IntervaloX(float x);
         bool IntervaloY(float y);
         void Colisao(Bala *bala);
+        //
+        void setR(float r);
+        void setG(float g);
+        void setB(float b);
+        void setAlpha(float alpha);
+        void setColor(float r, float b, float g, float alpha);
+        float getR();
+        float getG();
+        float getB();
+        float getAlpha();
 };
 
 #endif

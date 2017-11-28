@@ -64,14 +64,14 @@ void Cubo::MoveInimigo(){
 }
 
 bool Cubo::IntervaloX(float x){
-    if(this->getX() <= x && (this->getX() + this->getLado() >= x){
+    if((this->getX() <= x) && (this->getX() + this->getLado() >= x)){
         return true;
     }
     return false;
 
 }
 bool Cubo::IntervaloY(float y){
-    if(this->getY() <= y && (this->getY() + this->getLado() >= y){
+    if((this->getY()) <= y && (this->getY() + this->getLado() >= y)){
       //ESTA NO INTERVALO
         return true;
     }
@@ -84,4 +84,49 @@ void Cubo::Colisao(Bala *bala){
               setVida(false);
         }
     }
+}
+
+void Cubo::setR(float r)
+{
+
+}
+
+void Cubo::setG(float g)
+{
+
+}
+
+void Cubo::setB(float b)
+{
+
+}
+
+void Cubo::setAlpha(float alpha)
+{
+
+}
+
+void Cubo::setColor(float r, float b, float g, float alpha)
+{
+
+}
+
+float Cubo::getR()
+{
+
+}
+
+float Cubo::getG()
+{
+
+}
+
+float Cubo::getB()
+{
+
+}
+
+float Cubo::getAlpha()
+{
+
 }
