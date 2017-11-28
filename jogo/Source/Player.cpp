@@ -115,7 +115,7 @@ bool Player::IntervaloX(float x){
 }
 
 bool Player::IntervaloY(float y){
-  if((this->getY() <= y) && (this->getY() + this->geAltura() >= y)){
+  if((this->getY() <= y) && (this->getY() + this->getAltura() >= y)){
     //ESTA NO INTERVALO
       return true;
   }
@@ -124,7 +124,7 @@ bool Player::IntervaloY(float y){
 
 void Player::Colisao(Cubo *cubo){
   if(IntervaloX(cubo->getX()) && IntervaloY(cubo->getY())){
-      if(IntervaloX(cubo->getX()+cubo->getLargura()) && IntervaloY(cubo->getY() + cubo->getAltura())){
+      if(IntervaloX(cubo->getX()+cubo->getLado()) && IntervaloY(cubo->getY() + cubo->getLado())){
             setVida(false);
       }
   }
