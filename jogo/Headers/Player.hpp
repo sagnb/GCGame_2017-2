@@ -50,5 +50,5 @@ class Player()
         float setEscalaX(float escalaX);
         float setEscalaY(float escalaY);
         float setEscalaZ(float escalaZ);
-        voi readObject(char* nomeArquivo);
+        void readObject(char* nomeArquivo);
 };

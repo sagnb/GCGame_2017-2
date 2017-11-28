@@ -2,11 +2,11 @@
 
 using namespace std;
 
-Cubo(){
+Cubo::Cubo(){
 
 }
 
-Cubo(float x, float y, float z, float lado)
+Cubo::Cubo(float x, float y, float z, float lado)
 {
     this->x = x;
     this->y = y;

@@ -2,11 +2,11 @@
 
 using namespace std;
 
-Bala(){
+Bala::Bala(){
 
 }
 
-Bala(float x, float y, float z)
+Bala::Bala(float x, float y, float z)
 {
       this->x = x;
       this->y = y;
