@@ -47,7 +47,7 @@ class Player
         void moveEsq();
         bool IntervaloX(float x);
         bool IntervaloY(float y);
-        void Colisao(Cubo *cubo);
+        //void Colisao(Cubo *cubo);
         void drawPlayer();
         float getEscalaX();
         float getEscalaY();

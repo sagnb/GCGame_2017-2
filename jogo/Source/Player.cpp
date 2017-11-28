@@ -1,7 +1,7 @@
-
 #include "../Headers/Player.hpp"
 #include "../Headers/Player.hpp"
 #include "../Headers/Cubo.hpp"
+#include "../Headers/Bala.hpp"
 
 #include "GL/glut.h"
 
@@ -122,14 +122,14 @@ bool Player::IntervaloY(float y){
   return false;
 }
 
-void Player::Colisao(Cubo *cubo){
+/*void Player::Colisao(Cubo *cubo){
   if(IntervaloX(cubo->getX()) && IntervaloY(cubo->getY())){
       if(IntervaloX(cubo->getX()+cubo->getLado()) && IntervaloY(cubo->getY() + cubo->getLado())){
-            setVida(false);
+            this->setVida(false);
       }
   }
 
-}
+}*/
 
 void Player::drawPlayer()
 {

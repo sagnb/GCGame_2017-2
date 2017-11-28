@@ -1,5 +1,3 @@
-#include "GL/glut.h"
-
 #include "../Headers/Cubo.hpp"
 #include "../Headers/Player.hpp"
 #include "../Headers/Bala.hpp"
@@ -9,6 +7,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
+
+#include "GL/glut.h"
 
 using namespace std;
 
@@ -26,7 +26,8 @@ Cubo::Cubo(float x, float y, float z, float lado)
     this->texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 }
 
-Cubo::~Cubo()
+Cubo::~Cubo(){
+}
 
 float Cubo::getX(){
     return this->x;
@@ -87,10 +88,31 @@ bool Cubo::IntervaloY(float y){
     return false;
 }
 
-void Cubo::Colisao(Bala *bala){
+bool Cubo::IntervaloXP(float x){
+  if((this->getX() <= x) && (this->getX() + this->getLado() >= x)){
+      return true;
+  }
+  return false;
+}
+
+bool Cubo::IntervaloYP(float y){
+  if((this->getY() <= y) && (this->getY() + this->getLado() >= y)){
+    //ESTA NO INTERVALO
+      return true;
+  }
+  return false;
+}
+
+void Cubo::Colisao(Bala *bala, Player *play){
     if(IntervaloX(bala->getX()) && IntervaloY(bala->getY())){
         if(IntervaloX(bala->getX()+bala->getLargura()) && IntervaloY(bala->getY() + bala->getAltura())){
               setVida(false);
+        }
+    }
+    if(IntervaloXP(play->getX()) && IntervaloYP(play->getY())){
+        if(IntervaloXP(play->getX()+play->getLargura()) && IntervaloY(play->getY() + player->getAltura())){
+              setVida(false);
+              play->setVida(false); //PERDEU COLISAO ENTRE PERSONAGEM E CUBO
         }
     }
 }

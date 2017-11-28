@@ -1,8 +1,7 @@
 #ifndef CUBO_H
 #define CUBO_H
 
-#include "GL/glut.h"
-
+#include "Player.hpp"
 #include "Player.hpp"
 #include "Bala.hpp"
 
@@ -11,7 +10,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
-
+#include "GL/glut.h"
 class Cubo
 {
     private:
@@ -43,7 +42,9 @@ class Cubo
         void MoveInimigo();
         bool IntervaloX(float x);
         bool IntervaloY(float y);
-        void Colisao(Bala *bala);
+        bool IntervaloXP(float x);
+        bool IntervaloYP(float y);
+        void Colisao(Bala *bala, Player *play);
         void drawCubo();
         GLuint loadTexture(char* nome, int width, int height);
 };
