@@ -1,4 +1,4 @@
-#include "..Headers/Bala.hpp"
+#include "../Headers/Bala.hpp"
 
 using namespace std;
 
