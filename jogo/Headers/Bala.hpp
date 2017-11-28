@@ -2,6 +2,7 @@
 #define BALA_H
 
 #include "GL/glut.h"
+#include "../Headers/Object.h"
 
 class Bala
 {
@@ -21,7 +22,7 @@ class Bala
     public:
 
       Bala();
-      Bala(char* nome, float x, float y, float z);
+      Bala(char* nome, float x, float y, float z, int vel);
       ~Bala();
       float getX();
       float getY();

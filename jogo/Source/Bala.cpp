@@ -1,4 +1,9 @@
+#include <iostream>
+#include <stdlib.h>
 #include "../Headers/Bala.hpp"
+#include "../Headers/Object.h"
+
+#include "GL/glut.h"
 
 using namespace std;
 
@@ -27,9 +32,6 @@ float Bala::getX()
     return this->x;
 }
 
-void setVelocidade(int vel){
-    this->velocidade = vel;
-}
 int getVelocidade()
 {
   return this->velocidade;
@@ -87,6 +89,10 @@ void Bala::setAltura(float alt)
 void Bala::setProfundidade(float pro)
 {
     this->profundidade = pro;
+}
+
+void setVelocidade(int vel){
+    this->velocidade = vel;
 }
 
 void Bala::drawBala()
