@@ -7,12 +7,9 @@
 
 using namespace std;
 
-Player::Player()
-{
+Player::Player(){}
 
-}
-
-Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ)
+Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha)
 {
     this->readObject(nomeArquivo);
     this->setEscalaX(escalaX);
@@ -25,6 +22,7 @@ Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, floa
     this->setAltura(this->nave->getAltura());
     this->setProfundidade(this->nave->getProfundidade());
     this->setVida(true);
+    this->setColor(r, g, b, alpha);
 }
 
 Player::~Player()
@@ -110,14 +108,14 @@ void Player::moveEsq()
 }
 
 bool Player::IntervaloX(float x){
-  if(this->getX() <= x && (this->getX() + this->getLargura() >= x){
+  if((this->getX() <= x) && (this->getX() + this->getLargura() >= x)){
       return true;
   }
   return false;
 }
 
 bool Player::IntervaloY(float y){
-  if(this->getY() <= y && (this->getY() + this->geAltura() >= y){
+  if((this->getY() <= y) && (this->getY() + this->geAltura() >= y)){
     //ESTA NO INTERVALO
       return true;
   }
@@ -136,10 +134,10 @@ void Player::Colisao(Cubo *cubo){
 void Player::drawPlayer()
 {
   glPushMatrix();
-      glTranslatef(ppos,15,-200);
-     glScalef(4,4,4);
-     glColor4f(0.0f,0.0f,0.3f, 1.0f);
-     objeto->glObject();
+     glTranslatef(this->getX(), this->getY(),this->getZ());
+     glScalef(this->getEscalaX(), this->getEscalaY(), this->getEscalaZ());
+     glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+     this->nave->glObject();
   glPopMatrix();
 }
 
@@ -177,4 +175,52 @@ void Player::readObject(char* nomeArquivo)
 {
   nave = new Object();
   this->nave->readObject(nomeArquivo);
+}
+
+void Player::setR(float r)
+{
+  this->r = r;
+}
+
+void Player::setG(float g)
+{
+  this->g = g;
+}
+
+void Player::setB(float b)
+{
+  this->b = b;
+}
+
+void Player::setAlpha(float alpha)
+{
+  this->alpha = alpha;
+}
+
+float Player::getR()
+{
+  return this->r;
+}
+
+float Player::getG()
+{
+  return this->g;
+}
+
+float Player::getB()
+{
+  return this->b;
+}
+
+float Player::getAlpha()
+{
+  return this->alpha;
+}
+
+void Player::setColor(float r, float g, float b, float alpha)
+{
+  this->setR(r);
+  this->setG(g);
+  this->setB(b);
+  this->setAlpha(alpha);
 }
