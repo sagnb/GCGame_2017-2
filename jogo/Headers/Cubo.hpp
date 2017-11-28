@@ -3,7 +3,7 @@
 
 #include "GL/glut.h"
 
-class Cubo()
+class Cubo
 {
     private:
         GLuint texture[3];
@@ -16,6 +16,7 @@ class Cubo()
     public:
         Cubo();
         Cubo(float x, float y, float z, float lado);
+        ~Cubo();
         float getX();
         float getY();
         float getZ();
@@ -31,3 +32,5 @@ class Cubo()
         bool IntervaloY(float y);
         void Colisao(Bala *bala);
 };
+
+#endif
