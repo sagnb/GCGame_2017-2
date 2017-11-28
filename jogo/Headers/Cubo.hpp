@@ -2,8 +2,15 @@
 #define CUBO_H
 
 #include "GL/glut.h"
+
 #include "Player.hpp"
 #include "Bala.hpp"
+
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <cstdlib>
+#include <cstdio>
 
 class Cubo
 {
@@ -38,6 +45,7 @@ class Cubo
         bool IntervaloY(float y);
         void Colisao(Bala *bala);
         void drawCubo();
+        GLuint loadTexture(char* nome, int width, int height);
 };
 
 #endif
