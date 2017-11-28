@@ -26,7 +26,7 @@ Cubo::Cubo(float x, float y, float z, float lado)
     this->texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 }
 
-Cubo::~Cubo()
+Cubo::~Cubo(){}
 
 float Cubo::getX(){
     return this->x;
