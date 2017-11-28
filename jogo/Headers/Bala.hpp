@@ -3,7 +3,7 @@
 
 #include "GL/glut.h"
 
-class Bala()
+class Bala
 {
     private:
         Object *bala;
@@ -41,3 +41,5 @@ class Bala()
       void drawBala();
       void readObject(char* nome);
 };
+
+#endif
