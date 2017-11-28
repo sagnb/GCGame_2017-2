@@ -21,7 +21,7 @@ class Cubo
 
     public:
         Cubo();
-        Cubo(float x, float y, float z, float lado);
+        Cubo(float x, float y, float z, float lado, float r, float g, float b, float alpha);
         ~Cubo();
         float getX();
         float getY();
@@ -37,16 +37,7 @@ class Cubo
         bool IntervaloX(float x);
         bool IntervaloY(float y);
         void Colisao(Bala *bala);
-        //
-        void setR(float r);
-        void setG(float g);
-        void setB(float b);
-        void setAlpha(float alpha);
-        void setColor(float r, float b, float g, float alpha);
-        float getR();
-        float getG();
-        float getB();
-        float getAlpha();
+        void drawCubo();
 };
 
 #endif

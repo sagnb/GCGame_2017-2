@@ -10,11 +10,11 @@ Cubo::Cubo(){
 
 Cubo::Cubo(float x, float y, float z, float lado)
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
-    this->lado = lado;
-    this->vida = true;
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLado(lado);
+    this->setVida(true);
 }
 
 Cubo::~Cubo()
@@ -86,47 +86,56 @@ void Cubo::Colisao(Bala *bala){
     }
 }
 
-void Cubo::setR(float r)
+void Cubo::drawCubo()
 {
 
-}
+      glBindTexture( GL_TEXTURE_2D, texture[0]);
+      glBegin (GL_QUADS);//POLYGON);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(5, -5, -5.0);
+      glEnd();
 
-void Cubo::setG(float g)
-{
+       glBindTexture( GL_TEXTURE_2D, texture[0]);
+      glBegin (GL_QUADS);//POLYGON);
+          glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, 5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(5, -5, 5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, 5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-5, 5, 5.0);
+      glEnd();
 
-}
 
-void Cubo::setB(float b)
-{
+       glBindTexture( GL_TEXTURE_2D, texture[0]);
+       glBegin (GL_QUADS);
+            glTexCoord2f(0.0, 0.0); glVertex3f(5.0,-5.0, -5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(5.0, 5.0, -5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(5.0,-5.0, 5.0);
+      glEnd();
 
-}
+       glBindTexture( GL_TEXTURE_2D, texture[0]);
+       glBegin (GL_QUADS);
+           glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, -5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, -5, 5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
 
-void Cubo::setAlpha(float alpha)
-{
+      glEnd();
 
-}
+       glBindTexture( GL_TEXTURE_2D, texture[0]);
+       glBegin (GL_QUADS);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, -5.0, -5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(5.0, -5.0, -5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, -5.0, 5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, -5.0, 5.0);
+      glEnd();
 
-void Cubo::setColor(float r, float b, float g, float alpha)
-{
-
-}
-
-float Cubo::getR()
-{
-
-}
-
-float Cubo::getG()
-{
-
-}
-
-float Cubo::getB()
-{
-
-}
-
-float Cubo::getAlpha()
-{
-
+       glBindTexture( GL_TEXTURE_2D, texture[0]);
+       glBegin (GL_QUADS);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(5.0,5.0, -5.0);
+      glEnd();
 }
