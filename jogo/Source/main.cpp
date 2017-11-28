@@ -22,7 +22,7 @@ GLuint texture[3];
 
 Object* objeto = new Object;
 Player *nave;
-Bala *bala;
+Bala *balas;
 
 
 void cubo ();
@@ -33,27 +33,26 @@ GLuint loadTexture(char* nome, int width, int height);
 
 void init(void){
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
-	glShadeModel(GL_SMOOTH);
-	//glShadeModel(GL_FLAT);
-	glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
-	glEnable(GL_DEPTH_TEST);
+	  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
+	  glShadeModel(GL_SMOOTH);
+	  //glShadeModel(GL_FLAT);
+	  glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
+	  glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_BLEND);
+	  glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
-	glFrontFace(GL_CW);    //
+	  glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
 }
 
 void reshape( int w, int h ){
     ratio = 1.0f * w / h;
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	  glMatrixMode(GL_PROJECTION);
+	  glLoadIdentity();
     glViewport(0, 0, w, h);
-	gluPerspective(90,ratio,0.01,700);
+	  gluPerspective(90,ratio,0.01,700);
 
 }
 
@@ -172,35 +171,27 @@ void display( void )
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
     PosicUser();
-	DefineLuz();
+	  DefineLuz();
 
+  	plano(800,5, 0.0);
 
-	plano(500,5, 0.0);
+    glPushMatrix();
+    		glTranslatef(ppos,15,-200);
+	  		glScalef(4,4,4);
+	  		glColor4f(0.0f,0.0f,0.3f, 1.0f);
+	  		objeto->glObject();
+	  glPopMatrix();
 
-
-
-   glPushMatrix();
-        glTranslatef(ppos,15,-200);
-	    glScalef(4,4,4);
-	    glColor4f(0.0f,0.0f,0.3f, 1.0f);
-	    objeto->glObject();
-
-	glPopMatrix();
-
-	glPushMatrix();
+	  glPushMatrix();
         glEnable( GL_TEXTURE_2D );
         glTranslatef(0,15,100);
         glRotatef(180,0,0,1);
-        //glRotatef(theta, 1,1,1);
         glScalef(3,3,3);
-	    cubo();
-	    glDisable( GL_TEXTURE_2D );
-	glPopMatrix;
+	    	cubo();
+	    	glDisable( GL_TEXTURE_2D );
+	  glPopMatrix;
 
-
-
-
-	glutSwapBuffers();
+		glutSwapBuffers();
 }
 
 void keyboard ( unsigned char key, int x, int y ){
@@ -214,11 +205,12 @@ void keyboard ( unsigned char key, int x, int y ){
         case 'd':
             ppos-=2;
         break;
-				case 'p': //espaco
-						bala = new Bala("./Accets/bala.obj", 0, 0, 0);
+				case 'p': //espaco? enter?
+						Bala *balas = new Bala("./Accets/bala.obj", 0, 0, 0, 5);
+						balas->drawBala();
+
 				break;
         default:
-
 
         break;
     }

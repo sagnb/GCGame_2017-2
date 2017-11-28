@@ -16,7 +16,6 @@ Bala::Bala(char* nome, float x, float y, float z, int vel)
       this->setAltura(1);
       this->setProfundidade(1);
       this->setVelocidade(vel);
-      drawBala();
 }
 
 Bala::~Bala(){
@@ -94,7 +93,7 @@ void Bala::drawBala()
 {
   glPushMatrix();
      glTranslatef(this->getX(), this->getY(), this->getZ());
-     glScalef(2,2,2);
+     glScalef(20,20,20);
      glColor4f(0.0f,0.0f,0.3f, 1.0f);
      this->bala->glObject();
   glPopMatrix();
@@ -104,7 +103,7 @@ void Bala::drawBala()
 
 void Percurso()
 {
-    this->y++;
+    this->y += getVelocidade();
 }
 
 void Bala::readObject(char* nome)
