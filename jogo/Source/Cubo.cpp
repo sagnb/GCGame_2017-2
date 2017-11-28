@@ -1,4 +1,6 @@
 #include "../Headers/Cubo.hpp"
+#include "../Headers/Player.hpp"
+#include "../Headers/Bala.hpp"
 
 using namespace std;
 
