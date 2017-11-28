@@ -2,7 +2,6 @@
 #define CUBO_H
 
 #include "Player.hpp"
-#include "Player.hpp"
 #include "Bala.hpp"
 
 #include <iostream>

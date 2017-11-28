@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <stdio.h>
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
@@ -13,7 +14,6 @@
 using namespace std;
 
 Cubo::Cubo(){
-
 }
 
 Cubo::Cubo(float x, float y, float z, float lado)
@@ -111,7 +111,7 @@ void Cubo::Colisao(Bala *bala, Player *play){
         }
     }
     if(IntervaloXP(play->getX()) && IntervaloYP(play->getY())){
-        if(IntervaloXP(play->getX()+play->getLargura()) && IntervaloY(play->getY() + player->getAltura())){
+        if(IntervaloXP(play->getX()+play->getLargura()) && IntervaloY(play->getY() + play->getAltura())){
               setVida(false);
               play->setVida(false); //PERDEU COLISAO ENTRE PERSONAGEM E CUBO
         }
