@@ -32,7 +32,7 @@ float Bala::getX()
     return this->x;
 }
 
-int getVelocidade()
+int Bala::getVelocidade()
 {
   return this->velocidade;
 }
@@ -91,7 +91,7 @@ void Bala::setProfundidade(float pro)
     this->profundidade = pro;
 }
 
-void setVelocidade(int vel){
+void Bala::setVelocidade(int vel){
     this->velocidade = vel;
 }
 
@@ -107,7 +107,7 @@ void Bala::drawBala()
   glutSwapBuffers();
 }
 
-void Percurso()
+void Bala::Percurso()
 {
     this->y += getVelocidade();
 }
