@@ -124,3 +124,33 @@ void Player::drawPlayer()
 {
   //FAZER
 }
+
+float getEscalaX()
+{
+  return this->escalaX;
+}
+
+float getEscalaY()
+{
+  return this->escalaY;
+}
+
+float getEscalaZ()
+{
+  return this->escalaZ;
+}
+
+float setEscalaX(float escalaX)
+{
+  this->escalaX = escalaX;
+}
+
+float setEscalaY(float escalaY)
+{
+  this->escalaY = escalaY;
+}
+
+float setEscalaZ(float escalaZ)
+{
+  this->escalaZ = escalaZ;
+}
