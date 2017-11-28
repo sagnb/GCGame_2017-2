@@ -178,3 +178,18 @@ float Object::getMaxZ()
   }
   return maxZ;
 }
+
+float Object::getLargura()
+{
+  return this->getMaxX() - this->getMinX();
+}
+
+float Object::getAltura()
+{
+  return this->getMaxY() - this->getMaxY();
+}
+
+float Object::getProfundidade()
+{
+  return this->getMaxZ() - this->getMaxZ();
+}

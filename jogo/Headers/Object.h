@@ -32,7 +32,10 @@ class Object{
         float getMinZ();
         float getMaxX();
         float getMaxY();
-        float getMaxZ();  
+        float getMaxZ();
+        float getLargura();
+        float getAltura();
+        float getProfundidade();
 };
 
 #endif
