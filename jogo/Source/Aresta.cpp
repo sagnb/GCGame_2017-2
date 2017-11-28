@@ -38,3 +38,74 @@ Ponto Aresta::getvetDir()
 {
     return this->vetDir;
 }
+
+float Aresta::getMinX()
+{
+  if(this->getP1().getX() > this->getP2().getX())
+  {
+    return this->getP2().getX();
+  }
+  else
+  {
+    return this->getP1().getX();
+  }
+}
+
+float Aresta::getMinY()
+{
+  if(this->getP1().getY() > this->getP2().getY())
+  {
+    return this->getP2().getY();
+  }
+  else
+  {
+    return this->getP1().getY();
+  }
+}
+
+float Aresta::getMinZ()
+{
+  if(this->getP1().getZ() > this->getP2().getZ())
+  {
+    return this->getP2().getZ();
+  }
+  else
+  {
+    return this->getP1().getZ();
+  }
+}
+
+float Aresta::getMaxX()
+{
+  if(this->getP1().getX() < this->getP2().getX())
+  {
+    return this->getP2().getX();
+  }
+  else
+  {
+    return this->getP1().getX();
+  }
+}
+
+float Aresta::getMaxY()
+{
+  if(this->getP1().getY() < this->getP2().getY())
+  {
+    return this->getP2().getY();
+  }
+  else
+  {
+    return this->getP1().getY();
+  }
+}
+float Aresta::getMaxZ()
+{
+  if(this->getP1().getZ() < this->getP2().getZ())
+  {
+    return this->getP2().getZ();
+  }
+  else
+  {
+    return this->getP1().getZ();
+  }
+}

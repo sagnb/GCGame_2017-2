@@ -22,7 +22,12 @@ class Face{
         void glFace(int comTextura, GLuint texture);
 	    void calcula_vetZ();
         float getvetZ();
-        
+        float getMinX();
+        float getMinY();
+        float getMinZ();
+        float getMaxX();
+        float getMaxY();
+        float getMaxZ();      
 };
 
 #endif

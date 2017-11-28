@@ -26,7 +26,7 @@ void Face::glFace(int comTextura, GLuint texture){
             arestas[i].glAresta();
         }
     glEnd();
-        
+
 }
 
 void Face::addAresta(Aresta aresta){
@@ -46,4 +46,82 @@ void Face::calcula_vetZ()
 float Face::getvetZ()
 {
     return this->vetZ;
+}
+
+float Face::getMinX()
+{
+  float minX = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMinX() <= minX)
+    {
+      minX = this->arestas[i].getMinX();
+    }
+  }
+  return minX;
+}
+
+float Face::getMinY()
+{
+  float minY = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMinY() <= minY)
+    {
+      minY = this->arestas[i].getMinY();
+    }
+  }
+  return minY;
+}
+
+float Face::getMinZ()
+{
+  float minZ = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMinZ() <= minZ)
+    {
+      minZ = this->arestas[i].getMinZ();
+    }
+  }
+  return minZ;
+}
+
+float Face::getMaxX()
+{
+  float maxX = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMaxX() >= maxX)
+    {
+      maxX = this->arestas[i].getMaxX();
+    }
+  }
+  return maxX;
+}
+
+float Face::getMaxY()
+{
+  float maxY = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMaxY() >= maxY)
+    {
+      maxY = this->arestas[i].getMaxY();
+    }
+  }
+  return maxY;
+}
+
+float Face::getMaxZ()
+{
+  float maxZ = 0;
+  for(int i = 0; i < this->arestas.size(); i++)
+  {
+    if(this->arestas[i].getMaxZ() >= maxZ)
+    {
+      maxZ = this->arestas[i].getMaxZ();
+    }
+  }
+  return maxZ;
 }

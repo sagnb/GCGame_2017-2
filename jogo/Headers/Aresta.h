@@ -20,5 +20,12 @@ class Aresta{
         Ponto getP2();
 	    Ponto getvetDir();
 	    void calcula_vetDir ();
+      float getMinX();
+      float getMinY();
+      float getMinZ();
+      float getMaxX();
+      float getMaxY();
+      float getMaxZ();
+
 };
 #endif

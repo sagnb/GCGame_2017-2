@@ -11,7 +11,7 @@ class Object{
     private:
         std::vector<Face> faces;
         int n_faces;
-        float minZ; 
+        float minZ;
         int comTextura;
         GLuint texture;
     public:
@@ -27,6 +27,12 @@ class Object{
         void rotateObject(char eixo, double angle);
         void sortFaces();
         void loadTexture(char* nome, int width, int height);
+        float getMinX();
+        float getMinY();
+        float getMinZ();
+        float getMaxX();
+        float getMaxY();
+        float getMaxZ();  
 };
 
 #endif

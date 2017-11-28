@@ -100,3 +100,81 @@ void Object::readObject(char *nomeArquivo){
     }
 
 }
+
+float Object::getMinX()
+{
+  float minX = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMinX() <= minX)
+    {
+      minX = this->faces[i].getMinX();
+    }
+  }
+  return minX;
+}
+
+float Object::getMinY()
+{
+  float minY = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMinY() <= minY)
+    {
+      minY = this->faces[i].getMinY();
+    }
+  }
+  return minY;
+}
+
+float Object::getMinZ()
+{
+  float minZ = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMinZ() <= minZ)
+    {
+      minZ = this->faces[i].getMinZ();
+    }
+  }
+  return minZ;
+}
+
+float Object::getMaxX()
+{
+  float maxX = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMaxX() >= maxX)
+    {
+      maxX = this->faces[i].getMaxX();
+    }
+  }
+  return maxX;
+}
+
+float Object::getMaxY()
+{
+  float maxY = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMaxY() >= maxY)
+    {
+      maxY = this->faces[i].getMaxY();
+    }
+  }
+  return maxY;
+}
+
+float Object::getMaxZ()
+{
+  float maxZ = 0;
+  for(int i = 0; i < this->faces.size(); i++)
+  {
+    if(this->faces[i].getMaxZ() >= maxZ)
+    {
+      maxZ = this->faces[i].getMaxZ();
+    }
+  }
+  return maxZ;
+}
