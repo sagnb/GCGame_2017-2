@@ -27,6 +27,7 @@ Cubo::Cubo(float x, float y, float z, float lado)
 }
 
 Cubo::~Cubo(){
+
 }
 
 float Cubo::getX(){

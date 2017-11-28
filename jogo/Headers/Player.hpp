@@ -6,6 +6,8 @@
 
 #include "GL/glut.h"
 
+using namespace std;
+
 class Player
 {
       private:
