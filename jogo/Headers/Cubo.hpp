@@ -21,7 +21,7 @@ class Cubo
 
     public:
         Cubo();
-        Cubo(float x, float y, float z, float lado, float r, float g, float b, float alpha);
+        Cubo(float x, float y, float z, float lado);
         ~Cubo();
         float getX();
         float getY();
