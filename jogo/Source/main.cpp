@@ -22,6 +22,7 @@ GLuint texture[3];
 
 Object* objeto = new Object;
 Player *nave;
+Bala *bala;
 
 
 void cubo ();
@@ -213,6 +214,9 @@ void keyboard ( unsigned char key, int x, int y ){
         case 'd':
             ppos-=2;
         break;
+				case 'p': //espaco
+						bala = new Bala("./Accets/bala.obj", 0, 0, 0);
+				break;
         default:
 
 
@@ -233,6 +237,7 @@ int main(int argc, char** argv){
 	glutCreateWindow("Leitura de OBJ");
 
     objeto->readObject("./Accets/ship.obj");
+
 		//guilherme->FAZENDO()______________________________
 
 		//nave = new Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ)

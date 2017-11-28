@@ -6,19 +6,34 @@ Bala::Bala(){
 
 }
 
-Bala::Bala(float x, float y, float z)
+Bala::Bala(char* nome, float x, float y, float z, int vel)
 {
-      this->x = x;
-      this->y = y;
-      this->z = z;
-      this->largura = 1;
-      this->altura = 1;
-      this->profundidade = 1;
+      this->readObject(nome);
+      this->setX(x);
+      this->setY(y);
+      this->setZ(z);
+      this->setLargura(1);
+      this->setAltura(1);
+      this->setProfundidade(1);
+      this->setVelocidade(vel);
+      drawBala();
+}
+
+Bala::~Bala(){
+  delete(bala);
 }
 
 float Bala::getX()
 {
     return this->x;
+}
+
+void setVelocidade(int vel){
+    this->velocidade = vel;
+}
+int getVelocidade()
+{
+  return this->velocidade;
 }
 
 float Bala::getY()
@@ -77,5 +92,23 @@ void Bala::setProfundidade(float pro)
 
 void Bala::drawBala()
 {
-  //FAZER
+  glPushMatrix();
+     glTranslatef(this->getX(), this->getY(), this->getZ());
+     glScalef(2,2,2);
+     glColor4f(0.0f,0.0f,0.3f, 1.0f);
+     this->bala->glObject();
+  glPopMatrix();
+
+  glutSwapBuffers();
+}
+
+void Percurso()
+{
+    this->y++;
+}
+
+void Bala::readObject(char* nome)
+{
+  bala = new Object();
+  this->bala->readObject(nome);
 }
