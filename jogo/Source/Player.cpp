@@ -96,12 +96,12 @@ void Player::setProfundidade(float pro)
 
 void Player::moveDir()
 {
-    this->x++;
+    this->x-=2;
 }
 
 void Player::moveEsq()
 {
-    this->x--;
+    this->x+=2;
 }
 
 bool Player::IntervaloX(float x){
@@ -220,4 +220,91 @@ void Player::setColor(float r, float g, float b, float alpha)
   this->setG(g);
   this->setB(b);
   this->setAlpha(alpha);
+}
+
+void Player::defineLuz()
+{
+
+      glEnable(GL_COLOR_MATERIAL);//Habilita o uso de cores
+      glEnable(GL_LIGHTING);// Habilita o uso de iluminação
+
+      GLfloat intAmbiente[] = {0.15, 0.15, 0.15}; //intensidade do componente ambiente da luz
+      glLightModelfv(GL_LIGHT_MODEL_AMBIENT, intAmbiente);// Habilita a luz ambiente
+
+      //definição dos parametros da luz 0
+      GLfloat posLuz[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
+      GLfloat corLuz[] = {50.0, 50.0, 50.0}; //cor e intensidade da luz
+      GLfloat dirLuz[] = {0.0, 0.0, 0.0}; //direcao da luz
+      GLfloat angulo = 180.0;// angulo de abertura(]0º,90º[ ou 180º)
+      GLfloat foco = 120; //grau de concentração(]0,120[)
+
+      posLuz[0]=0;
+      posLuz[1]=220.0;
+      posLuz[2]=-200;
+
+      dirLuz[0] = 0 - posLuz[0];
+      dirLuz[1] = -1;
+      dirLuz[2] = 0 - posLuz[2];
+
+      //normalize(dirLuz);
+
+      //Inicia com os parametros setados
+      glLightfv(GL_LIGHT0, GL_DIFFUSE, corLuz); // Define a in    tensidade do componenete difuso da luz
+      glLightfv(GL_LIGHT0, GL_SPECULAR, corLuz); // Define a intensidade do componenete especular da luz
+      glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angulo); // Define o angulo de abertura da luz
+      glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, foco); //Define a concentração da luz na area do cutoff
+
+      glLightfv(GL_LIGHT0, GL_POSITION, posLuz); // Define a posição da luz no ambiente
+      glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, dirLuz); // Define a direção da luz com base na posição
+
+      //atenuação da luz
+      glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 80);
+      glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.0);
+      glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.0);
+
+      //inicializacao
+      glEnable(GL_LIGHT0);
+
+      //definição dos parametros da luz 0
+      GLfloat posLuz1[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
+      GLfloat corLuz1[] = {1.0, 1.0, 1.0}; //cor e intensidade da luz
+      GLfloat dirLuz1[] = {0.0, 0.0, 0.0}; //direcao da luz
+      GLfloat angulo1 = 45.0;// angulo de abertura(]0º,90º[ ou 180º)
+      GLfloat foco1 = 20; //grau de concentração(]0,120[)
+
+      posLuz1[0]= this->getX();
+      posLuz1[1]=22;
+      posLuz1[2]=-230;
+
+      dirLuz1[0] = 0;
+      dirLuz1[1] = 0;
+      dirLuz1[2] = 1;
+
+      //normalize(dirLuz);
+
+      //Inicia com os parametros setados
+      glLightfv(GL_LIGHT1, GL_DIFFUSE, corLuz1); // Define a in    tensidade do componenete difuso da luz
+      glLightfv(GL_LIGHT1, GL_SPECULAR, corLuz1); // Define a intensidade do componenete especular da luzdd
+      glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, angulo1); // Define o angulo de abertura da luz
+      glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, foco1); //Define a concentração da luz na area do cutoff
+
+      glLightfv(GL_LIGHT1, GL_POSITION, posLuz1); // Define a posição da luz no ambiente
+      glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, dirLuz1); // Define a direção da luz com base na posição
+
+      //atenuação da luz
+      glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.2);
+      glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.003);
+      glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.0);
+
+      //inicializacao
+      glEnable(GL_LIGHT1);
+
+      glPushMatrix();
+          glColor4f(0.5f,0.0f,0.0f, 1.0f);
+          glTranslatef(posLuz[0],posLuz[1],posLuz[2]);
+          glutSolidSphere(1, 10, 10);
+      glPopMatrix();
+      //cubo(posLuz[0],posLuz[1],posLuz[2], 0.5);
+
+
 }

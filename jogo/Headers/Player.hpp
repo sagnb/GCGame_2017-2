@@ -67,6 +67,7 @@ class Player
         float getB();
         float getAlpha();
         void setColor(float r, float g, float b, float alpha);
+        void defineLuz();
 };
 
 #endif
