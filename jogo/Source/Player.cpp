@@ -130,6 +130,64 @@ bool Player::IntervaloY(float y){
 
 void Player::drawPlayer()
 {
+  //
+  glPushMatrix();
+      glTranslatef(0,15,100);
+      glRotatef(180,0,0,1);
+      glScalef(3,3,3);
+   glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+  glBegin (GL_QUADS);
+        glVertex3f(-5, -5, -5.0);
+        glVertex3f(-5, 5, -5.0);
+        glVertex3f(5, 5, -5.0);
+        glVertex3f(5, -5, -5.0);
+  glEnd();
+
+     glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+  glBegin (GL_QUADS);
+        glVertex3f(-5.0,-5.0, 5.0);
+        glVertex3f(5, -5, 5.0);
+        glVertex3f(5, 5, 5.0);
+        glVertex3f(-5, 5, 5.0);
+  glEnd();
+
+
+      glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+   glBegin (GL_QUADS);
+        glVertex3f(5.0,-5.0, -5.0);
+        glVertex3f(5.0, 5.0, -5.0);
+        glVertex3f(5.0, 5.0, 5.0);
+        glVertex3f(5.0,-5.0, 5.0);
+  glEnd();
+
+      glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+   glBegin (GL_QUADS);
+       glVertex3f(-5.0,-5.0, -5.0);
+        glVertex3f(-5.0, -5, 5.0);
+        glVertex3f(-5.0, 5.0, 5.0);
+        glVertex3f(-5.0, 5.0, -5.0);
+
+  glEnd();
+
+   glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+   glBegin (GL_QUADS);
+         glVertex3f(-5.0, -5.0, -5.0);
+        glVertex3f(5.0, -5.0, -5.0);
+         glVertex3f(5.0, -5.0, 5.0);
+        glVertex3f(-5.0, -5.0, 5.0);
+  glEnd();
+
+   glColor4f(this->getR(), this->getG(), this->getB(), this->getAlpha());
+   glBegin (GL_QUADS);
+         glVertex3f(-5.0, 5.0, -5.0);
+        glVertex3f(-5.0, 5.0, 5.0);
+        glVertex3f(5.0, 5.0, 5.0);
+        glVertex3f(5.0,5.0, -5.0);
+  glEnd();
+
+  	  glPopMatrix();
+
+  //
   glPushMatrix();
      glTranslatef(this->getX(), this->getY(),this->getZ());
      glScalef(this->getEscalaX(), this->getEscalaY(), this->getEscalaZ());
