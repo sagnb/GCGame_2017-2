@@ -126,14 +126,14 @@ void Cubo::Colisao(Bala *bala, Player *play){
 
 void Cubo::drawCubo()
 {
-<<<<<<< HEAD
+
       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
       glBegin (GL_QUADS);//POLYGON);
             glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
             glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
             glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
             glTexCoord2f(1.0, 0.0); glVertex3f(5, -5, -5.0);
-=======
+
       glPushMatrix();
       glTranslatef(this->getX(), this->getY(), this->getZ());
       glScalef(this->getLado(),this->getLado(),this->getLado());
@@ -145,7 +145,7 @@ void Cubo::drawCubo()
             glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
             glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
             glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, -1.0);
->>>>>>> aec4b263c4a772f37e3a17f192e476316e3bc9bc
+
       glEnd();
 
        glBindTexture( GL_TEXTURE_2D, this->texture);
