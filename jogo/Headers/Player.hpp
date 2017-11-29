@@ -30,6 +30,7 @@ class Player
       public:
         Player();
         Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha);
+        Player(Object* objeto, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha);
         ~Player();
         float getX();
         float getY();
@@ -58,6 +59,7 @@ class Player
         float setEscalaY(float escalaY);
         float setEscalaZ(float escalaZ);
         void readObject(char* nomeArquivo);
+        void setObject(Object* objeto);
         void setR(float r);
         void setG(float g);
         void setB(float b);

@@ -17,33 +17,34 @@ double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
 int theta = 0;
 GLfloat ratio;
-int ppos = 0;
+GLuint textura;
 
-GLuint texture[3];
-Object* objbala = new Object();
-
+Object *objbala, *objnave;
 Player *nave;
-Bala *bala;
+
 vector <Bala*> b;
-Cubo *cubo1, *cubo2, *cubo3;
+vector <Cubo*> c;
+vector <GLuint> texturas;
 
 void plano (int tam, int passo, float y);
 void normalize(float* init);
-GLuint loadTexture(char* nome, int width, int height);
+GLuint loadTexture(const char* nome, int width, int height);
 
 
 void init(void){
+    
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
 
-	  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
-	  glShadeModel(GL_SMOOTH);
-	  //glShadeModel(GL_FLAT);
-	  glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
-	  glEnable(GL_DEPTH_TEST);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
+	glShadeModel(GL_SMOOTH);
+	glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
+	glEnable(GL_DEPTH_TEST);
 
-	  glEnable(GL_BLEND);
+	glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	  glFrontFace(GL_CW);    //
+	glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
     
@@ -66,7 +67,6 @@ void timer(int value){
 }
 
 void PosicUser(){
-	// Set the clipping volume
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -94,14 +94,17 @@ void display( void )
 		b[i]->Percurso();
 		b[i]->drawBala();
 	}
-
-	nave->drawPlayer();
+	
+	
 	glEnable( GL_TEXTURE_2D );
-	cubo1->drawCubo();
-	cubo2->drawCubo();
-	cubo3->drawCubo();
+
+	for(int i = 0; i < c.size(); i++){
+	    c[i]->drawCubo();
+	}
+	
 	glDisable( GL_TEXTURE_2D );
 
+	nave->drawPlayer();
 	nave->defineLuz();
 
 	glutSwapBuffers();
@@ -113,16 +116,13 @@ void keyboard ( unsigned char key, int x, int y ){
             exit (0);
         break;
         case 'a':
-            //ppos+=2;
 			nave->moveEsq();
         break;
         case 'd':
-            //ppos-=2;
 			nave->moveDir();
         break;
 		case ' ': //espaco
-		    bala = new Bala(objbala, nave->getX(), 10, -200, 2);
-		    b.push_back(bala);
+		    b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
 		break;
         default:
 
@@ -130,25 +130,33 @@ void keyboard ( unsigned char key, int x, int y ){
     }
 }
 
+void load(){
+
+    objbala = new Object();
+    objnave = new Object();
+	
+	objnave->readObject("./Accets/ship.obj");
+    objbala->readObject("./Accets/bala.obj");
+    
+    texturas.push_back(loadTexture("./Accets/kepler.ppm", 200, 200));
+    
+    for(int i = -10; i < 10; i++){
+        for(int j = 0; j < 10; j++)
+            c.push_back( new Cubo(texturas[0], i*30,10,j*30,10) );
+    }
+    
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
+}
+
 
 int main(int argc, char** argv){
     glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable( GL_BLEND );
-
 	glutInitWindowPosition (0,0);
 	glutInitWindowSize(600, 500);
 	glutCreateWindow("Leitura de OBJ");
 
-
-    cubo1 = new Cubo(0,10,0, 10);
-    cubo2 = new Cubo(40,10,0, 10);
-    cubo3 = new Cubo(-40,10,0, 10);
-	nave = new Player("./Accets/ship.obj", 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
-    objbala->readObject("./Accets/bala.obj");
-	
+    load();
 	init();
 
 	glutDisplayFunc ( display );
@@ -181,7 +189,8 @@ void plano(int tam, int passo, float y){
     glPopMatrix();
 }
 
-GLuint loadTexture(char* nome, int width, int height){
+GLuint loadTexture(const char* nome, int width, int height){
+    GLuint textura;
     int red,green,blue;
     ifstream iFile(nome);
     string val;
@@ -208,8 +217,8 @@ GLuint loadTexture(char* nome, int width, int height){
     }
     iFile.close();
 
-    glGenTextures(1, &texture[0]); // gera a textura vazia
-    glBindTexture(GL_TEXTURE_2D, texture[0]); //define a textura como a atual
+    glGenTextures(1, &textura); // gera a textura vazia
+    glBindTexture(GL_TEXTURE_2D, textura); //define a textura como a atual
 
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);// ativa repretição horizontal
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);// ativa a repetição vertical
@@ -221,13 +230,5 @@ GLuint loadTexture(char* nome, int width, int height){
 
 
     delete []data;
-    return texture[0];
-}
-
-
-void normalize(float* init){
-    float mod = sqrt(init[0]*init[0] + init[1]*init[1] + init[2]*init[2]);
-    init[0] = init[0]/mod;
-    init[1] = init[1]/mod;
-    init[2] = init[2]/mod;
+    return textura;
 }

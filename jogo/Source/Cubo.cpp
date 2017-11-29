@@ -14,14 +14,24 @@ using namespace std;
 Cubo::Cubo(){
 }
 
-Cubo::Cubo(float x, float y, float z, float lado)
+Cubo::Cubo(const char* nome, float x, float y, float z, float lado)
 {
     this->setX(x);
     this->setY(y);
     this->setZ(z);
     this->setLado(lado);
     this->setVida(true);
-    this->texture = loadTexture("./Accets/kepler.ppm", 200, 200);
+    this->texture = loadTexture(nome, 200, 200);
+}
+
+Cubo::Cubo(GLuint textura, float x, float y, float z, float lado)
+{
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLado(lado);
+    this->setVida(true);
+    this->texture = textura;
 }
 
 Cubo::~Cubo(){
