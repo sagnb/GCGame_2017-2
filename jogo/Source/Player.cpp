@@ -22,6 +22,23 @@ Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, floa
     this->setColor(r, g, b, alpha);
 }
 
+Player::Player(Object* objeto, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha)
+{
+    this->setObject(objeto);
+    this->setEscalaX(escalaX);
+    this->setEscalaY(escalaY);
+    this->setEscalaZ(escalaZ);
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLargura(this->nave->getLargura());
+    this->setAltura(this->nave->getAltura());
+    this->setProfundidade(this->nave->getProfundidade());
+    this->setVida(true);
+    this->setColor(r, g, b, alpha);
+}
+
+
 Player::~Player()
 {
   delete(nave);
@@ -167,6 +184,10 @@ float Player::setEscalaY(float escalaY)
 float Player::setEscalaZ(float escalaZ)
 {
   this->escalaZ = escalaZ;
+}
+
+void Player::setObject(Object* objeto){
+    nave = objeto;
 }
 
 void Player::readObject(char* nomeArquivo)

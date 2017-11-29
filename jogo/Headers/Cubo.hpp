@@ -28,7 +28,8 @@ class Cubo
 
     public:
         Cubo();
-        Cubo(float x, float y, float z, float lado);
+        Cubo(const char *nome, float x, float y, float z, float lado);
+        Cubo(GLuint textura, float x, float y, float z, float lado);
         ~Cubo();
         float getX();
         float getY();
