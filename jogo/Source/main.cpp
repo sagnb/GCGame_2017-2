@@ -9,6 +9,7 @@
 #include "GL/glut.h"
 #include <cmath>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -20,9 +21,14 @@ int ppos = 0;
 
 GLuint texture[3];
 
-Object* objeto = new Object;
+//Object* objeto = new Object;
 Player *nave;
 Bala *balas;
+
+//
+vector <Bala> b;
+
+//
 
 
 void cubo ();
@@ -63,7 +69,7 @@ void timer(int value){
     glutTimerFunc(10, timer, 0);
 }
 
-
+/*
 void DefineLuz(){
 
     glEnable(GL_COLOR_MATERIAL);//Habilita o uso de cores
@@ -149,7 +155,7 @@ void DefineLuz(){
 
 
 }
-
+*/
 void PosicUser(){
 	// Set the clipping volume
 
@@ -171,17 +177,25 @@ void display( void )
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
     PosicUser();
-	  DefineLuz();
-
+	 // DefineLuz();
+	 	nave->defineLuz();
+		//
   	plano(800,5, 0.0);
-
+		for(int i = 0; i < b.size(); i++)
+		{
+			b[i].Percurso();
+			b[i].drawBala();
+		}
+/*
     glPushMatrix();
     		glTranslatef(ppos,15,-200);
 	  		glScalef(4,4,4);
 	  		glColor4f(0.0f,0.0f,0.3f, 1.0f);
 	  		objeto->glObject();
 	  glPopMatrix();
-
+*/
+		nave->drawPlayer();
+		//
 	  glPushMatrix();
         glEnable( GL_TEXTURE_2D );
         glTranslatef(0,15,100);
@@ -189,7 +203,7 @@ void display( void )
         glScalef(3,3,3);
 	    	cubo();
 	    	glDisable( GL_TEXTURE_2D );
-	  glPopMatrix;
+	  glPopMatrix();
 
 		glutSwapBuffers();
 }
@@ -200,13 +214,16 @@ void keyboard ( unsigned char key, int x, int y ){
             exit (0);
         break;
         case 'a':
-            ppos+=2;
+            //ppos+=2;
+						nave->moveEsq();
         break;
         case 'd':
-            ppos-=2;
+            //ppos-=2;
+						nave->moveDir();
         break;
 				case ' ': //espaco
-						balas = new Bala("../Accets/bala.obj", ppos, 0, -200, 2);
+						//balas = new Bala("../Accets/bala.obj", nave->getX(), 0, -200, 2);
+						b.push_back(Bala("../Accets/bala.obj", nave->getX(), 0, -200, 2));
 				break;
         default:
 
@@ -226,12 +243,12 @@ int main(int argc, char** argv){
 	glutInitWindowSize(600, 500);
 	glutCreateWindow("Leitura de OBJ");
 
-    objeto->readObject("./Accets/ship.obj");
+    //objeto->readObject("./Accets/ship.obj");
 
 
 		//guilherme->FAZENDO()______________________________
 
-		//nave = new Player(char* nomeArquivo, float x, float y, float z, float escalaX, float escalaY, float escalaZ)
+		nave = new Player("./Accets/ship.obj", 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
 
 		//__________________________________________________
     texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
