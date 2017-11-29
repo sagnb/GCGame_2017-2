@@ -25,14 +25,15 @@ GLuint texture[3];
 Player *nave;
 Bala *balas;
 Bala *bala;
+Cubo *cubo;
 
 //
 vector <Bala*> b;
+vector <Cubo*> inimigos;
 
 //
 
-
-void cubo ();
+//void cubo ();
 void plano (int tam, int passo, float y);
 void normalize(float* init);
 GLuint loadTexture(char* nome, int width, int height);
@@ -65,7 +66,9 @@ void reshape( int w, int h ){
 
 void timer(int value){
     theta+=1.5;
-    if (theta >= 360) theta=0.0;
+    if (theta >= 360){
+			theta=0.0;
+		}
     glutPostRedisplay();
     glutTimerFunc(10, timer, 0);
 }
@@ -182,22 +185,32 @@ void display( void )
 	nave->defineLuz();
 
   	plano(800,5, 0.0);
+	//ATUALIZA AS BALAS
 	for(int i = 0; i < b.size(); i++)
 	{
 		b[i]->Percurso();
 		b[i]->drawBala();
 	}
+	//ATUALIZA OS CUBOS
+	/*for(int j = 0; j < inimigos.size(); j++)
+	{
+		//if(inimigos[j]->getVida()){
+				//inimigos[j]->MoveInimigo();
+				inimigos[j]->drawCubo();
+		//}
+	}*/
 
 	nave->drawPlayer();
-
-	glPushMatrix();
+	cubo->drawCubo();
+	/*glPushMatrix();
         glEnable( GL_TEXTURE_2D );
         glTranslatef(0,15,100);
         glRotatef(180,0,0,1);
         glScalef(3,3,3);
-	    cubo();
+	    cubo(); drawCubo();
 	    glDisable( GL_TEXTURE_2D );
-	glPopMatrix();
+	glPopMatrix();*/
+
 
 		glutSwapBuffers();
 }
@@ -242,9 +255,13 @@ int main(int argc, char** argv){
 
 	//guilherme->FAZENDO()______________________________
 
-	nave = new Player("./Accets/ship.obj", 0, 15, -200, 4, 4, 4, 5, 0, 0, 1);
+	nave = new Player("./Accets/ship.obj", 15, 15, -200, 4, 4, 4, 5, 0, 0, 1);
 		//__________________________________________________
-    texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
+
+	cubo = new Cubo(30, 50, -200, 10);
+	//inimigos.push_back(cubo);
+
+    //texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 	init();
 
 	glutDisplayFunc ( display );
@@ -276,7 +293,7 @@ void plano(int tam, int passo, float y){
         }
     glPopMatrix();
 }
-void cubo () {
+/*void cubo() {
 
     glBindTexture( GL_TEXTURE_2D, texture[0]);
     glBegin (GL_QUADS);
@@ -328,7 +345,7 @@ void cubo () {
           glTexCoord2f(1.0, 0.0); glVertex3f(5.0,5.0, -5.0);
     glEnd();
 
-}
+}*/
 
 GLuint loadTexture(char* nome, int width, int height){
     int red,green,blue;

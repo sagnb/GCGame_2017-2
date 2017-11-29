@@ -20,7 +20,7 @@ Bala::Bala(char* nome, float x, float y, float z, int vel)
       this->setAltura(1);
       this->setProfundidade(1);
       this->setVelocidade(vel);
-      this->drawBala();
+      //this->drawBala();
 }
 
 Bala::~Bala(){

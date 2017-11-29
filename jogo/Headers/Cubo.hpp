@@ -24,6 +24,7 @@ class Cubo
         float g;
         float b;
         float alpha;
+        int gang; //Quantidade de Inimigos
 
     public:
         Cubo();
@@ -33,12 +34,14 @@ class Cubo
         float getY();
         float getZ();
         float getLado();
+        int getGang();
         bool getVida();
         void setX( float x);
         void setY( float y);
         void setZ( float z);
         void setLado(float lado);
         void setVida(bool vida);
+        void setGang(int g);
         void MoveInimigo();
         bool IntervaloX(float x);
         bool IntervaloY(float y);

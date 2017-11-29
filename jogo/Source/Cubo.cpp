@@ -22,6 +22,8 @@ Cubo::Cubo(float x, float y, float z, float lado)
     this->setLado(lado);
     this->setVida(true);
     this->texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
+    this->gang = 10;
+    this->drawCubo();
 }
 
 Cubo::~Cubo(){
@@ -42,6 +44,10 @@ float Cubo::getZ(){
 
 float Cubo::getLado(){
     return this->lado;
+}
+
+int Cubo::getGang(){
+    return this->gang;
 }
 
 bool Cubo::getVida(){
@@ -72,6 +78,10 @@ void Cubo::MoveInimigo(){
     this->y--;
 }
 
+void Cubo::setGang(int g)
+{
+    this->gang = g;
+}
 bool Cubo::IntervaloX(float x){
     if((this->getX() <= x) && (this->getX() + this->getLado() >= x)){
         return true;
@@ -118,7 +128,6 @@ void Cubo::Colisao(Bala *bala, Player *play){
 
 void Cubo::drawCubo()
 {
-
       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
       glBegin (GL_QUADS);//POLYGON);
             glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
