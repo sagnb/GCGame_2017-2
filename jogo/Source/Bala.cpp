@@ -100,20 +100,20 @@ void Bala::drawBala()
   glPushMatrix();
      glTranslatef(this->getX(), this->getY(), this->getZ());
      glScalef(2, 2, 2);
+     glRotatef(90,1,0,0);
      glColor4f(0.0f,0.0f,0.3f, 1.0f);
      this->bala->glObject();
   glPopMatrix();
 
-  glutSwapBuffers();
 }
 
 void Bala::Percurso()
 {
-    this->y += getVelocidade();
+    this->z += getVelocidade();
 }
 
 void Bala::readObject(char* nome)
 {
-  bala = new Object();
+  this->bala = new Object();
   this->bala->readObject(nome);
 }
