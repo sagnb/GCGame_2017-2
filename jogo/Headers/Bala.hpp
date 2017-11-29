@@ -23,6 +23,7 @@ class Bala
 
       Bala();
       Bala(char* nome, float x, float y, float z, int vel);
+      Bala(Object* objeto, float x, float y, float z, int vel);
       ~Bala();
       float getX();
       float getY();
@@ -40,7 +41,8 @@ class Bala
       void setVelocidade(int vel);
       void Percurso(); //INCREMENTA O Y DA BALA
       void drawBala();
-      void readObject(char* nome);
+      void setObject(Object* objeto);
+      void readObject(const char* nome);
 };
 
 #endif

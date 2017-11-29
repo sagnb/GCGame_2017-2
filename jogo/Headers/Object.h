@@ -23,7 +23,7 @@ class Object{
         void printObject(image *im, float s,float d, int r, int g, int b);
         void glObject();
         int getNFaces();
-        void readObject(char* nomeArquivo);
+        void readObject(const char* nomeArquivo);
         void rotateObject(char eixo, double angle);
         void sortFaces();
         void loadTexture(char* nome, int width, int height);

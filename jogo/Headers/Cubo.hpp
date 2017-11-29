@@ -14,7 +14,7 @@ class Player;
 class Cubo
 {
     private:
-        GLuint texture[3];
+        GLuint texture;
         float x;
         float y;
         float z;
@@ -46,7 +46,7 @@ class Cubo
         bool IntervaloYP(float y);
         void Colisao(Bala *bala, Player *play);
         void drawCubo();
-        GLuint loadTexture(char* nome, int width, int height);
+        GLuint loadTexture(const char* nome, int width, int height);
 };
 
 #endif

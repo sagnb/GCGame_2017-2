@@ -23,6 +23,19 @@ Bala::Bala(char* nome, float x, float y, float z, int vel)
       this->drawBala();
 }
 
+Bala::Bala(Object* objeto, float x, float y, float z, int vel)
+{
+      this->setObject(objeto);
+      this->setX(x);
+      this->setY(y);
+      this->setZ(z);
+      this->setLargura(1);
+      this->setAltura(1);
+      this->setProfundidade(1);
+      this->setVelocidade(vel);
+      this->drawBala();
+}
+
 Bala::~Bala(){
   delete(bala);
 }
@@ -85,7 +98,6 @@ void Bala::setAltura(float alt)
 {
     this->altura = alt;
 }
-
 void Bala::setProfundidade(float pro)
 {
     this->profundidade = pro;
@@ -112,7 +124,11 @@ void Bala::Percurso()
     this->z += getVelocidade();
 }
 
-void Bala::readObject(char* nome)
+void Bala::setObject(Object* objeto){
+    this->bala = objeto;
+}
+
+void Bala::readObject(const char* nome)
 {
   this->bala = new Object();
   this->bala->readObject(nome);
