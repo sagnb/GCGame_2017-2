@@ -178,18 +178,18 @@ void display( void )
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
     PosicUser();
-    
+
 	nave->defineLuz();
-	
+
   	plano(800,5, 0.0);
 	for(int i = 0; i < b.size(); i++)
 	{
 		b[i]->Percurso();
 		b[i]->drawBala();
 	}
-   
+
 	nave->drawPlayer();
-	
+
 	glPushMatrix();
         glEnable( GL_TEXTURE_2D );
         glTranslatef(0,15,100);
@@ -242,7 +242,7 @@ int main(int argc, char** argv){
 
 	//guilherme->FAZENDO()______________________________
 
-	nave = new Player("./Accets/ship.obj", 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
+	nave = new Player("./Accets/ship.obj", 0, 15, -200, 4, 4, 4, 5, 0, 0, 1);
 		//__________________________________________________
     texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 	init();
