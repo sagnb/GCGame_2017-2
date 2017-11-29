@@ -20,20 +20,13 @@ GLfloat ratio;
 int ppos = 0;
 
 GLuint texture[3];
+Object* objbala = new Object();
 
-//Object* objeto = new Object;
 Player *nave;
-Bala *balas;
 Bala *bala;
-Cubo *cubo;
-
-//
 vector <Bala*> b;
-vector <Cubo*> inimigos;
+Cubo *cubo1, *cubo2, *cubo3;
 
-//
-
-//void cubo ();
 void plano (int tam, int passo, float y);
 void normalize(float* init);
 GLuint loadTexture(char* nome, int width, int height);
@@ -53,6 +46,7 @@ void init(void){
 	  glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
+
 }
 
 void reshape( int w, int h ){
@@ -73,93 +67,6 @@ void timer(int value){
     glutTimerFunc(10, timer, 0);
 }
 
-/*
-void DefineLuz(){
-
-    glEnable(GL_COLOR_MATERIAL);//Habilita o uso de cores
-    glEnable(GL_LIGHTING);// Habilita o uso de iluminação
-
-    GLfloat intAmbiente[] = {0.15, 0.15, 0.15}; //intensidade do componente ambiente da luz
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, intAmbiente);// Habilita a luz ambiente
-
-    //definição dos parametros da luz 0
-    GLfloat posLuz[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
-    GLfloat corLuz[] = {50.0, 50.0, 50.0}; //cor e intensidade da luz
-    GLfloat dirLuz[] = {0.0, 0.0, 0.0}; //direcao da luz
-    GLfloat angulo = 180.0;// angulo de abertura(]0º,90º[ ou 180º)
-    GLfloat foco = 120; //grau de concentração(]0,120[)
-
-    posLuz[0]=0;
-    posLuz[1]=220.0;
-    posLuz[2]=-200;
-
-    dirLuz[0] = 0 - posLuz[0];
-    dirLuz[1] = -1;
-    dirLuz[2] = 0 - posLuz[2];
-
-    //normalize(dirLuz);
-
-    //Inicia com os parametros setados
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, corLuz); // Define a in    tensidade do componenete difuso da luz
-    glLightfv(GL_LIGHT0, GL_SPECULAR, corLuz); // Define a intensidade do componenete especular da luz
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angulo); // Define o angulo de abertura da luz
-    glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, foco); //Define a concentração da luz na area do cutoff
-
-    glLightfv(GL_LIGHT0, GL_POSITION, posLuz); // Define a posição da luz no ambiente
-    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, dirLuz); // Define a direção da luz com base na posição
-
-    //atenuação da luz
-    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 80);
-    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.0);
-    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.0);
-
-    //inicializacao
-    glEnable(GL_LIGHT0);
-
-    //definição dos parametros da luz 0
-    GLfloat posLuz1[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
-    GLfloat corLuz1[] = {1.0, 1.0, 1.0}; //cor e intensidade da luz
-    GLfloat dirLuz1[] = {0.0, 0.0, 0.0}; //direcao da luz
-    GLfloat angulo1 = 45.0;// angulo de abertura(]0º,90º[ ou 180º)
-    GLfloat foco1 = 20; //grau de concentração(]0,120[)
-
-    posLuz1[0]=ppos;
-    posLuz1[1]=22;
-    posLuz1[2]=-230;
-
-    dirLuz1[0] = 0;
-    dirLuz1[1] = 0;
-    dirLuz1[2] = 1;
-
-    //normalize(dirLuz);
-
-    //Inicia com os parametros setados
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, corLuz1); // Define a in    tensidade do componenete difuso da luz
-    glLightfv(GL_LIGHT1, GL_SPECULAR, corLuz1); // Define a intensidade do componenete especular da luzdd
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, angulo1); // Define o angulo de abertura da luz
-    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, foco1); //Define a concentração da luz na area do cutoff
-
-    glLightfv(GL_LIGHT1, GL_POSITION, posLuz1); // Define a posição da luz no ambiente
-    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, dirLuz1); // Define a direção da luz com base na posição
-
-    //atenuação da luz
-    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.2);
-    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.003);
-    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.0);
-
-    //inicializacao
-    glEnable(GL_LIGHT1);
-
-    glPushMatrix();
-        glColor4f(0.5f,0.0f,0.0f, 1.0f);
-        glTranslatef(posLuz[0],posLuz[1],posLuz[2]);
-        glutSolidSphere(1, 10, 10);
-    glPopMatrix();
-    //cubo(posLuz[0],posLuz[1],posLuz[2], 0.5);
-
-
-}
-*/
 void PosicUser(){
 	// Set the clipping volume
 
@@ -182,7 +89,6 @@ void display( void )
 
     PosicUser();
 
-	nave->defineLuz();
 
   	plano(800,5, 0.0);
 	//ATUALIZA AS BALAS
@@ -201,18 +107,15 @@ void display( void )
 	}*/
 
 	nave->drawPlayer();
-	cubo->drawCubo();
-	/*glPushMatrix();
-        glEnable( GL_TEXTURE_2D );
-        glTranslatef(0,15,100);
-        glRotatef(180,0,0,1);
-        glScalef(3,3,3);
-	    cubo(); drawCubo();
-	    glDisable( GL_TEXTURE_2D );
-	glPopMatrix();*/
+	glEnable( GL_TEXTURE_2D );
+	cubo1->drawCubo();
+	cubo2->drawCubo();
+	cubo3->drawCubo();
+	glDisable( GL_TEXTURE_2D );
 
+	nave->defineLuz();
 
-		glutSwapBuffers();
+	glutSwapBuffers();
 }
 
 void keyboard ( unsigned char key, int x, int y ){
@@ -222,16 +125,16 @@ void keyboard ( unsigned char key, int x, int y ){
         break;
         case 'a':
             //ppos+=2;
-						nave->moveEsq();
+			nave->moveEsq();
         break;
         case 'd':
             //ppos-=2;
-						nave->moveDir();
+			nave->moveDir();
         break;
-				case ' ': //espaco
-						bala = new Bala("./Accets/bala.obj", nave->getX(), 10, -200, 2);
-						b.push_back(bala);
-				break;
+		case ' ': //espaco
+		    bala = new Bala(objbala, nave->getX(), 10, -200, 2);
+		    b.push_back(bala);
+		break;
         default:
 
         break;
@@ -250,18 +153,8 @@ int main(int argc, char** argv){
 	glutInitWindowSize(600, 500);
 	glutCreateWindow("Leitura de OBJ");
 
-    //objeto->readObject("./Accets/ship.obj");
 
 
-	//guilherme->FAZENDO()______________________________
-
-	nave = new Player("./Accets/ship.obj", 15, 15, -200, 4, 4, 4, 5, 0, 0, 1);
-		//__________________________________________________
-
-	cubo = new Cubo(30, 50, -200, 10);
-	//inimigos.push_back(cubo);
-
-    //texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
 	init();
 
 	glutDisplayFunc ( display );

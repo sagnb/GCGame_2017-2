@@ -33,7 +33,7 @@ void Object::glObject(){
     }
 }
 
-void Object::readObject(char *nomeArquivo){
+void Object::readObject(const char *nomeArquivo){
     ifstream file;
     file.open(nomeArquivo,ios::in);
 

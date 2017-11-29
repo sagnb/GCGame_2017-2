@@ -21,9 +21,7 @@ Cubo::Cubo(float x, float y, float z, float lado)
     this->setZ(z);
     this->setLado(lado);
     this->setVida(true);
-    this->texture[0] = loadTexture("./Accets/kepler.ppm", 200, 200);
-    this->gang = 10;
-    this->drawCubo();
+    this->texture = loadTexture("./Accets/kepler.ppm", 200, 200);
 }
 
 Cubo::~Cubo(){
@@ -128,58 +126,75 @@ void Cubo::Colisao(Bala *bala, Player *play){
 
 void Cubo::drawCubo()
 {
+<<<<<<< HEAD
       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
       glBegin (GL_QUADS);//POLYGON);
             glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
             glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
             glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
             glTexCoord2f(1.0, 0.0); glVertex3f(5, -5, -5.0);
+=======
+      glPushMatrix();
+      glTranslatef(this->getX(), this->getY(), this->getZ());
+      glScalef(this->getLado(),this->getLado(),this->getLado());
+      glColor4f(1.0,1.0,1.0, 1.0);
+
+      glBindTexture( GL_TEXTURE_2D, this->texture);
+      glBegin (GL_QUADS);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, -1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, -1.0);
+>>>>>>> aec4b263c4a772f37e3a17f192e476316e3bc9bc
       glEnd();
 
-       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
-      glBegin (GL_QUADS);//POLYGON);
-          glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, 5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(5, -5, 5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, 5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(-5, 5, 5.0);
+       glBindTexture( GL_TEXTURE_2D, this->texture);
+      glBegin (GL_QUADS);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-1.0,-1.0, 1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(1.0, -1.0, 1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, 1.0, 1.0);
       glEnd();
 
 
-       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
+       glBindTexture( GL_TEXTURE_2D, this->texture);
        glBegin (GL_QUADS);
-            glTexCoord2f(0.0, 0.0); glVertex3f(5.0,-5.0, -5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(5.0, 5.0, -5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(5.0,-5.0, 5.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(1.0,-1.0, -1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(1.0,-1.0, 1.0);
       glEnd();
 
-       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
+       glBindTexture( GL_TEXTURE_2D, this->texture);
        glBegin (GL_QUADS);
-           glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, -5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, -5, 5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
+           glTexCoord2f(0.0, 0.0); glVertex3f(-1.0,-1.0, -1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, -5, 1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, 1.0, 1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, 1.0, -1.0);
 
       glEnd();
 
-       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
+       glBindTexture( GL_TEXTURE_2D, this->texture);
        glBegin (GL_QUADS);
-            glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, -5.0, -5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(5.0, -5.0, -5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, -5.0, 5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, -5.0, 5.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, -1.0, -1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(1.0, -1.0, -1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(1.0, -1.0, 1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(-1.0, -1.0, 1.0);
       glEnd();
 
-       glBindTexture( GL_TEXTURE_2D, this->texture[0]);
+       glBindTexture( GL_TEXTURE_2D, this->texture);
        glBegin (GL_QUADS);
-            glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(5.0,5.0, -5.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(-1.0, 1.0, -1.0);
+            glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, 1.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(1.0,1.0, -1.0);
       glEnd();
+
+      glPopMatrix();
 }
 
-GLuint Cubo::loadTexture(char* nome, int width, int height){
+GLuint Cubo::loadTexture(const char* nome, int width, int height){
+    GLuint textura;
     int red,green,blue;
     ifstream iFile(nome);
     string val;
@@ -206,8 +221,8 @@ GLuint Cubo::loadTexture(char* nome, int width, int height){
     }
     iFile.close();
 
-    glGenTextures(1, &this->texture[0]); // gera a textura vazia
-    glBindTexture(GL_TEXTURE_2D, this->texture[0]); //define a textura como a atual
+    glGenTextures(1, &textura); // gera a textura vazia
+    glBindTexture(GL_TEXTURE_2D, textura); //define a textura como a atual
 
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);// ativa repretição horizontal
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);// ativa a repetição vertical
@@ -219,5 +234,5 @@ GLuint Cubo::loadTexture(char* nome, int width, int height){
 
 
     delete []data;
-    return this->texture[0];
+    return textura;
 }
