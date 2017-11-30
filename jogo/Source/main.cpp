@@ -32,7 +32,7 @@ GLuint loadTexture(const char* nome, int width, int height);
 
 
 void init(void){
-
+    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
 
@@ -47,7 +47,7 @@ void init(void){
 	glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
-
+    
 }
 
 void reshape( int w, int h ){
@@ -61,9 +61,7 @@ void reshape( int w, int h ){
 
 void timer(int value){
     theta+=1.5;
-    if (theta >= 360){
-			theta=0.0;
-		}
+    if (theta >= 360) theta=0.0;
     glutPostRedisplay();
     glutTimerFunc(10, timer, 0);
 }
@@ -86,33 +84,24 @@ void display( void )
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-
+    
     PosicUser();
-
-
+    
+    
   	plano(800,5, 0.0);
-	//ATUALIZA AS BALAS
 	for(int i = 0; i < b.size(); i++)
 	{
 		b[i]->Percurso();
 		b[i]->drawBala();
 	}
-	//ATUALIZA OS CUBOS
-	/*for(int j = 0; j < inimigos.size(); j++)
-	{
-		//if(inimigos[j]->getVida()){
-				//inimigos[j]->MoveInimigo();
-				inimigos[j]->drawCubo();
-		//}
-	}*/
-
-	nave->drawPlayer();
+	
+	
 	glEnable( GL_TEXTURE_2D );
 
 	for(int i = 0; i < c.size(); i++){
 	    c[i]->drawCubo();
 	}
-
+	
 	glDisable( GL_TEXTURE_2D );
 
 	nave->drawPlayer();
@@ -145,29 +134,37 @@ void load(){
 
     objbala = new Object();
     objnave = new Object();
-
+	
 	objnave->readObject("./Accets/ship.obj");
     objbala->readObject("./Accets/bala.obj");
-
-    texturas.push_back(loadTexture("./Accets/kepler.ppm", 200, 200));
-
-    for(int i = -10; i < 10; i++){
-        for(int j = 0; j < 10; j++)
-            c.push_back( new Cubo(texturas[0], i*30,10,j*30,10) );
+    
+    texturas.push_back(loadTexture("./Accets/kepler.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/thielo.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/jean.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/diego.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/claudio.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/gilianes.ppm", 300, 300));
+    
+    for(int i = -2; i < 3; i++){
+        for(int j = 0; j < 4; j++){
+            c.push_back( new Cubo(texturas[rand()%texturas.size()], i*100,40,j*100,30) );
+        }
     }
-
+    
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
 }
 
 
 int main(int argc, char** argv){
+
+    srand(time(NULL));
     glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowPosition (0,0);
 	glutInitWindowSize(600, 500);
 	glutCreateWindow("Leitura de OBJ");
 
-  load();
+    load();
 	init();
 
 	glutDisplayFunc ( display );
@@ -199,59 +196,6 @@ void plano(int tam, int passo, float y){
         }
     glPopMatrix();
 }
-/*void cubo() {
-
-    glBindTexture( GL_TEXTURE_2D, texture[0]);
-    glBegin (GL_QUADS);
-          glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(5, -5, -5.0);
-    glEnd();
-
-     glBindTexture( GL_TEXTURE_2D, texture[0]);
-    glBegin (GL_QUADS);
-        glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, 5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(5, -5, 5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(-5, 5, 5.0);
-    glEnd();
-
-
-     glBindTexture( GL_TEXTURE_2D, texture[0]);
-     glBegin (GL_QUADS);
-          glTexCoord2f(0.0, 0.0); glVertex3f(5.0,-5.0, -5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(5.0, 5.0, -5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(5.0,-5.0, 5.0);
-    glEnd();
-
-     glBindTexture( GL_TEXTURE_2D, texture[0]);
-     glBegin (GL_QUADS);
-         glTexCoord2f(0.0, 0.0); glVertex3f(-5.0,-5.0, -5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, -5, 5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
-
-    glEnd();
-
-     glBindTexture( GL_TEXTURE_2D, texture[0]);
-     glBegin (GL_QUADS);
-          glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, -5.0, -5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(5.0, -5.0, -5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(5.0, -5.0, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(-5.0, -5.0, 5.0);
-    glEnd();
-
-     glBindTexture( GL_TEXTURE_2D, texture[0]);
-     glBegin (GL_QUADS);
-          glTexCoord2f(0.0, 0.0); glVertex3f(-5.0, 5.0, -5.0);
-          glTexCoord2f(0.0, 1.0); glVertex3f(-5.0, 5.0, 5.0);
-          glTexCoord2f(1.0, 1.0); glVertex3f(5.0, 5.0, 5.0);
-          glTexCoord2f(1.0, 0.0); glVertex3f(5.0,5.0, -5.0);
-    glEnd();
-
-}*/
 
 GLuint loadTexture(const char* nome, int width, int height){
     GLuint textura;

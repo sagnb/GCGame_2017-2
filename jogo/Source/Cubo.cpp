@@ -54,10 +54,6 @@ float Cubo::getLado(){
     return this->lado;
 }
 
-int Cubo::getGang(){
-    return this->gang;
-}
-
 bool Cubo::getVida(){
     return this->vida;
 }
@@ -86,10 +82,6 @@ void Cubo::MoveInimigo(){
     this->y--;
 }
 
-void Cubo::setGang(int g)
-{
-    this->gang = g;
-}
 bool Cubo::IntervaloX(float x){
     if((this->getX() <= x) && (this->getX() + this->getLado() >= x)){
         return true;
@@ -136,14 +128,6 @@ void Cubo::Colisao(Bala *bala, Player *play){
 
 void Cubo::drawCubo()
 {
-
-      glBindTexture( GL_TEXTURE_2D, this->texture[0]);
-      glBegin (GL_QUADS);//POLYGON);
-            glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
-            glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
-            glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
-            glTexCoord2f(1.0, 0.0); glVertex3f(5, -5, -5.0);
-
       glPushMatrix();
       glTranslatef(this->getX(), this->getY(), this->getZ());
       glScalef(this->getLado(),this->getLado(),this->getLado());
@@ -155,7 +139,6 @@ void Cubo::drawCubo()
             glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0, -1.0);
             glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, -1.0);
             glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0, -1.0);
-
       glEnd();
 
        glBindTexture( GL_TEXTURE_2D, this->texture);
@@ -199,7 +182,7 @@ void Cubo::drawCubo()
             glTexCoord2f(1.0, 1.0); glVertex3f(1.0, 1.0, 1.0);
             glTexCoord2f(1.0, 0.0); glVertex3f(1.0,1.0, -1.0);
       glEnd();
-
+      
       glPopMatrix();
 }
 
