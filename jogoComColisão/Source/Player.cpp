@@ -20,6 +20,7 @@ Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, floa
     this->setProfundidade(this->nave->getProfundidade());
     this->setVida(true);
     this->setColor(r, g, b, alpha);
+    this->mortos = 0;
 }
 
 Player::Player(Object* objeto, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha)
@@ -36,6 +37,7 @@ Player::Player(Object* objeto, float x, float y, float z, float escalaX, float e
     this->setProfundidade(this->nave->getProfundidade());
     this->setVida(true);
     this->setColor(r, g, b, alpha);
+    this->mortos = 0;
 }
 
 
@@ -116,12 +118,12 @@ void Player::setProfundidade(float pro)
 
 void Player::moveDir()
 {
-    this->x-=2;
+    this->x-=5;
 }
 
 void Player::moveEsq()
 {
-    this->x+=2;
+    this->x+=5;
 }
 
 bool Player::IntervaloX(float x)
@@ -337,4 +339,12 @@ void Player::defineLuz()
     //cubo(posLuz[0],posLuz[1],posLuz[2], 0.5);
 
 
+}
+
+void Player::addMortos(){
+    this->mortos++;
+}
+
+int Player::getMortos(){
+    return this->mortos;
 }

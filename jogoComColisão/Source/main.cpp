@@ -10,6 +10,9 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <cstring>
+#include <sstream>
 
 using namespace std;
 
@@ -82,58 +85,90 @@ void PosicUser()
 
 }
 
+void displayText( float x, float y, int r, int g, int b, const char *string ) {
+	int j = strlen( string );
+	glColor3f( r, g, b );
+	glRasterPos2f( x, y );
+	for( int i = 0; i < j; i++ ) {
+		glutBitmapCharacter( GLUT_BITMAP_TIMES_ROMAN_24, string[i] );
+	}
+}
+
 void display( void )
 {
-    for(int i = 0; i < b.size(); i++)
-    {
-        if(!b[i]->getVida())
-        {
-            swap(b[i], b.back());
-            b.pop_back();
+
+    if(nave->getVida()){
+
+        int dificuldade  = nave->getMortos();
+        if(dificuldade > 200) dificuldade = 200;
+        if(rand()%(256 - (dificuldade)) == 0){
+
+            c.push_back(
+                new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
+            );
+
         }
-    }
-    if(nave->getVida())
-    {
-        for(int i = 0; i < c.size(); i++)
-        {
-            c[i]->MoveInimigo();
-        }
-        for(int i = 0; i < c.size(); i++)
-        {
-            c[i]->Colisao(b, nave);
-        }
-    }
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glMatrixMode(GL_MODELVIEW);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-
-    PosicUser();
-
-
-    plano(800,5, 0.0);
-    if(nave->getVida())
-    {
         for(int i = 0; i < b.size(); i++)
         {
-            b[i]->Percurso();
-            b[i]->drawBala();
+            if(!b[i]->getVida())
+            {
+                swap(b[i], b.back());
+                b.pop_back();
+            }
         }
-    }
+        if(nave->getVida())
+        {
+            for(int i = 0; i < c.size(); i++)
+            {
+                c[i]->MoveInimigo();
+            }
+            for(int i = 0; i < c.size(); i++)
+            {
+                c[i]->Colisao(b, nave);
+            }
+        }
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glMatrixMode(GL_MODELVIEW);
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+        PosicUser();
 
 
-    glEnable( GL_TEXTURE_2D );
+        plano(800,5, 0.0);
+        if(nave->getVida())
+        {
+            for(int i = 0; i < b.size(); i++)
+            {
+                b[i]->Percurso();
+                b[i]->drawBala();
+            }
+        }
 
-    for(int i = 0; i < c.size(); i++)
-    {
-        c[i]->drawCubo();
-    }
 
-    glDisable( GL_TEXTURE_2D );
-    if(nave->getVida())
-    {
-        nave->drawPlayer();
-        nave->defineLuz();
+        glEnable( GL_TEXTURE_2D );
+
+        for(int i = 0; i < c.size(); i++)
+        {
+            c[i]->drawCubo();
+        }
+
+        glDisable( GL_TEXTURE_2D );
+        if(nave->getVida())
+        {
+            nave->drawPlayer();
+            nave->defineLuz();
+        }
+
+    } else {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glMatrixMode(GL_MODELVIEW);
+        stringstream ss;
+        ss << "Pontuacao ";
+        ss << nave->getMortos();
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-40,255,255,255, ss.str().c_str());
     }
 
     glutSwapBuffers();
@@ -181,13 +216,13 @@ void load()
     texturas.push_back(loadTexture("./Accets/claudio.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/gilianes.ppm", 300, 300));
 
-    for(int i = -2; i < 3; i++)
+    /*for(int i = -2; i < 3; i++)
     {
         for(int j = 0; j < 4; j++)
         {
             c.push_back( new Cubo(texturas[rand()%texturas.size()], i*100,40,j*100,30) );
         }
-    }
+    }*/
 
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
 }

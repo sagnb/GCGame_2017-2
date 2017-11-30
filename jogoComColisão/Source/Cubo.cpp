@@ -149,6 +149,7 @@ void Cubo::Colisao(vector <Bala*> balas, Player *play)
                     {
                         this->setVida(false);
                         balas[i]->setVida(false);
+                        play->addMortos();
                         //cout << "certou\n";
                         //exit(-1);
                     }

@@ -26,6 +26,7 @@ private:
     float g;
     float b;
     float alpha;
+    int mortos;
 
 public:
     Player();
@@ -70,6 +71,8 @@ public:
     float getAlpha();
     void setColor(float r, float g, float b, float alpha);
     void defineLuz();
+    void addMortos();
+    int getMortos();
 };
 
 #endif
