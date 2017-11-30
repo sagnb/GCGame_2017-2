@@ -84,7 +84,14 @@ void PosicUser()
 
 void display( void )
 {
-    //nave->setVida(false);
+    for(int i = 0; i < b.size(); i++)
+    {
+        if(!b[i]->getVida())
+        {
+            swap(b[i], b.back());
+            b.pop_back();
+        }
+    }
     if(nave->getVida())
     {
         for(int i = 0; i < c.size(); i++)
