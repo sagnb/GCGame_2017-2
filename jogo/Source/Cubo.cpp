@@ -32,6 +32,7 @@ Cubo::Cubo(GLuint textura, float x, float y, float z, float lado)
     this->setLado(lado);
     this->setVida(true);
     this->texture = textura;
+    this->drawCubo();
 }
 
 Cubo::~Cubo(){
@@ -43,7 +44,7 @@ float Cubo::getX(){
 }
 
 float Cubo::getY(){
-    return this->y;
+  return this->y;
 }
 
 float Cubo::getZ(){
@@ -83,7 +84,7 @@ void Cubo::setLado(float lado){
 }
 
 void Cubo::MoveInimigo(){
-    this->y--;
+    this->y -= 4;
 }
 
 void Cubo::setGang(int g)
@@ -137,8 +138,8 @@ void Cubo::Colisao(Bala *bala, Player *play){
 void Cubo::drawCubo()
 {
 
-      glBindTexture( GL_TEXTURE_2D, this->texture[0]);
-      glBegin (GL_QUADS);//POLYGON);
+      glBindTexture( GL_TEXTURE_2D, this->texture);
+      glBegin (GL_QUADS);
             glTexCoord2f(0.0, 0.0); glVertex3f(-5, -5, -5.0);
             glTexCoord2f(0.0, 1.0); glVertex3f(-5, 5, -5.0);
             glTexCoord2f(1.0, 1.0); glVertex3f(5, 5, -5.0);
