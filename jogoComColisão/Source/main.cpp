@@ -31,47 +31,51 @@ void normalize(float* init);
 GLuint loadTexture(const char* nome, int width, int height);
 
 
-void init(void){
+void init(void)
+{
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
-	glShadeModel(GL_SMOOTH);
-	glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
-	glEnable(GL_DEPTH_TEST);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
+    glShadeModel(GL_SMOOTH);
+    glColorMaterial ( GL_FRONT, GL_AMBIENT_AND_DIFFUSE );
+    glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_BLEND);
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glFrontFace(GL_CW);    //
+    glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
 
 }
 
-void reshape( int w, int h ){
+void reshape( int w, int h )
+{
     ratio = 1.0f * w / h;
-	  glMatrixMode(GL_PROJECTION);
-	  glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     glViewport(0, 0, w, h);
-	  gluPerspective(90,ratio,0.01,700);
+    gluPerspective(90,ratio,0.01,700);
 
 }
 
-void timer(int value){
+void timer(int value)
+{
     theta+=1.5;
     if (theta >= 360) theta=0.0;
     glutPostRedisplay();
     glutTimerFunc(10, timer, 0);
 }
 
-void PosicUser(){
+void PosicUser()
+{
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glFrustum(-10,10,-10,10,0,200);
-	CamX = -280*sin(3.14*angle/180.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glFrustum(-10,10,-10,10,0,200);
+    CamX = -280*sin(3.14*angle/180.0);
     CamY = 220;
     CamZ = -280*cos(3.14*angle/180.0);
     gluLookAt(CamX, CamY, CamZ,0.0,0.0,0.0, 0.0,1.0,0.0);
@@ -80,18 +84,18 @@ void PosicUser(){
 
 void display( void )
 {
-  //nave->setVida(false);
-  if(nave->getVida())
-  {
-    for(int i = 0; i < c.size(); i++)
+    //nave->setVida(false);
+    if(nave->getVida())
     {
-      c[i]->MoveInimigo();
+        for(int i = 0; i < c.size(); i++)
+        {
+            c[i]->MoveInimigo();
+        }
+        for(int i = 0; i < c.size(); i++)
+        {
+            c[i]->Colisao(b, nave);
+        }
     }
-    for(int i = 0; i < c.size(); i++)
-    {
-      c[i]->Colisao(b, nave);
-    }
-  }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -100,63 +104,67 @@ void display( void )
     PosicUser();
 
 
-  	plano(800,5, 0.0);
+    plano(800,5, 0.0);
     if(nave->getVida())
     {
-	for(int i = 0; i < b.size(); i++)
-	{
-		b[i]->Percurso();
-		b[i]->drawBala();
-	}
-  }
+        for(int i = 0; i < b.size(); i++)
+        {
+            b[i]->Percurso();
+            b[i]->drawBala();
+        }
+    }
 
 
-	glEnable( GL_TEXTURE_2D );
+    glEnable( GL_TEXTURE_2D );
 
-	for(int i = 0; i < c.size(); i++){
-	    c[i]->drawCubo();
-	}
+    for(int i = 0; i < c.size(); i++)
+    {
+        c[i]->drawCubo();
+    }
 
-	glDisable( GL_TEXTURE_2D );
-  if(nave->getVida())
-  {
-	nave->drawPlayer();
-	nave->defineLuz();
-  }
+    glDisable( GL_TEXTURE_2D );
+    if(nave->getVida())
+    {
+        nave->drawPlayer();
+        nave->defineLuz();
+    }
 
-	glutSwapBuffers();
+    glutSwapBuffers();
 
 }
 
-void keyboard ( unsigned char key, int x, int y ){
-	switch (key){
-        case 27:
-            exit (0);
+void keyboard ( unsigned char key, int x, int y )
+{
+    switch (key)
+    {
+    case 27:
+        exit (0);
         break;
-        case 'a':
-			nave->moveEsq();
+    case 'a':
+        nave->moveEsq();
         break;
-        case 'd':
-			nave->moveDir();
+    case 'd':
+        nave->moveDir();
         break;
-		case ' ': //espaco
+    case ' ': //espaco
         if(nave->getVida())
         {
-		        b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
+            b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
         }
-		break;
-        default:
+        break;
+    default:
 
         break;
     }
 }
 
-void load(){
+void load()
+{
 
     objbala = new Object();
     objnave = new Object();
 
-	objnave->readObject("./Accets/ship.obj");
+    objnave->readObject("./Accets/ship.obj");
     objbala->readObject("./Accets/bala.obj");
 
     texturas.push_back(loadTexture("./Accets/kepler.ppm", 300, 300));
@@ -166,8 +174,10 @@ void load(){
     texturas.push_back(loadTexture("./Accets/claudio.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/gilianes.ppm", 300, 300));
 
-    for(int i = -2; i < 3; i++){
-        for(int j = 0; j < 4; j++){
+    for(int i = -2; i < 3; i++)
+    {
+        for(int j = 0; j < 4; j++)
+        {
             c.push_back( new Cubo(texturas[rand()%texturas.size()], i*100,40,j*100,30) );
         }
     }
@@ -176,49 +186,54 @@ void load(){
 }
 
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
 
     srand(time(NULL));
     glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowPosition (0,0);
-	glutInitWindowSize(600, 500);
-	glutCreateWindow("Leitura de OBJ");
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowPosition (0,0);
+    glutInitWindowSize(600, 500);
+    glutCreateWindow("Leitura de OBJ");
 
     load();
-	init();
+    init();
 
-	glutDisplayFunc ( display );
-	glutReshapeFunc ( reshape );
-	glutKeyboardFunc ( keyboard );
-	glutTimerFunc(10, timer, 0);
-	glutIdleFunc ( display );
+    glutDisplayFunc ( display );
+    glutReshapeFunc ( reshape );
+    glutKeyboardFunc ( keyboard );
+    glutTimerFunc(10, timer, 0);
+    glutIdleFunc ( display );
 
-	glutMainLoop ( );
-	return 0;
+    glutMainLoop ( );
+    return 0;
 
 }
 
-void plano(int tam, int passo, float y){
+void plano(int tam, int passo, float y)
+{
 
     glPushMatrix();
-	    glTranslatef ( -tam/2, y, -tam/2 );
-        for(int i=0;i<tam;i += passo) {
-            for(int j = 0; j < tam; j+=passo){
-                glBegin(GL_POLYGON);
-                glColor3f(1.0f,1.0f,1.0f);
-                glNormal3f(0.0,1.0,0.0);
-                glVertex3f(i        , 0.0  , j);
-                glVertex3f(i        , 0.0  , j+passo);
-                glVertex3f(i+passo  , 0.0  , j+passo);
-                glVertex3f(i+passo  , 0.0  , j);
-                glEnd();
-            }
+    glTranslatef ( -tam/2, y, -tam/2 );
+    for(int i=0; i<tam; i += passo)
+    {
+        for(int j = 0; j < tam; j+=passo)
+        {
+            glBegin(GL_POLYGON);
+            glColor3f(1.0f,1.0f,1.0f);
+            glNormal3f(0.0,1.0,0.0);
+            glVertex3f(i        , 0.0  , j);
+            glVertex3f(i        , 0.0  , j+passo);
+            glVertex3f(i+passo  , 0.0  , j+passo);
+            glVertex3f(i+passo  , 0.0  , j);
+            glEnd();
         }
+    }
     glPopMatrix();
 }
 
-GLuint loadTexture(const char* nome, int width, int height){
+GLuint loadTexture(const char* nome, int width, int height)
+{
     GLuint textura;
     int red,green,blue;
     ifstream iFile(nome);
@@ -236,7 +251,8 @@ GLuint loadTexture(const char* nome, int width, int height){
     getline(iFile, val, '\n');
     getline(iFile, val, '\n');
 
-    for (int i=0;i<(width*height*3);i+=3){
+    for (int i=0; i<(width*height*3); i+=3)
+    {
 
         iFile >> red >> green >> blue;
         data[i]=(unsigned char)red;

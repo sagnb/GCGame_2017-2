@@ -7,39 +7,41 @@
 
 using namespace std;
 
-Bala::Bala(){
+Bala::Bala()
+{
 }
 
 Bala::Bala(char* nome, float x, float y, float z, int vel)
 {
-      this->readObject(nome);
-      this->setX(x);
-      this->setY(y);
-      this->setZ(z);
-      this->setLargura(1);
-      this->setAltura(1);
-      this->setProfundidade(1);
-      this->setVelocidade(vel);
-      this->setVida(true);
-      this->drawBala();
+    this->readObject(nome);
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLargura(1);
+    this->setAltura(1);
+    this->setProfundidade(1);
+    this->setVelocidade(vel);
+    this->setVida(true);
+    this->drawBala();
 }
 
 Bala::Bala(Object* objeto, float x, float y, float z, int vel)
 {
-      this->setObject(objeto);
-      this->setX(x);
-      this->setY(y);
-      this->setZ(z);
-      this->setLargura(bala->getLargura());
-      this->setAltura(bala->getAltura());
-      this->setProfundidade(bala->getProfundidade());
-      this->setVelocidade(vel);
-      this->setVida(true);
-      this->drawBala();
+    this->setObject(objeto);
+    this->setX(x);
+    this->setY(y);
+    this->setZ(z);
+    this->setLargura(bala->getLargura());
+    this->setAltura(bala->getAltura());
+    this->setProfundidade(bala->getProfundidade());
+    this->setVelocidade(vel);
+    this->setVida(true);
+    this->drawBala();
 }
 
-Bala::~Bala(){
-  delete(bala);
+Bala::~Bala()
+{
+    delete(bala);
 }
 
 float Bala::getX()
@@ -49,7 +51,7 @@ float Bala::getX()
 
 int Bala::getVelocidade()
 {
-  return this->velocidade;
+    return this->velocidade;
 }
 
 float Bala::getY()
@@ -69,10 +71,11 @@ float Bala::getLargura()
 
 float Bala::getAltura()
 {
-  return altura;
+    return altura;
 }
 
-float Bala::getProfundidade(){
+float Bala::getProfundidade()
+{
     return profundidade;
 }
 
@@ -105,22 +108,23 @@ void Bala::setProfundidade(float pro)
     this->profundidade = pro;
 }
 
-void Bala::setVelocidade(int vel){
+void Bala::setVelocidade(int vel)
+{
     this->velocidade = vel;
 }
 
 void Bala::drawBala()
 {
-  if(this->getVida())
-  {
-  glPushMatrix();
-     glTranslatef(this->getX(), this->getY(), this->getZ());
-     glScalef(2, 2, 2);
-     glRotatef(90,1,0,0);
-     glColor4f(0.0f,0.0f,0.3f, 1.0f);
-     this->bala->glObject();
-  glPopMatrix();
-}
+    if(this->getVida())
+    {
+        glPushMatrix();
+        glTranslatef(this->getX(), this->getY(), this->getZ());
+        glScalef(2, 2, 2);
+        glRotatef(90,1,0,0);
+        glColor4f(0.0f,0.0f,0.3f, 1.0f);
+        this->bala->glObject();
+        glPopMatrix();
+    }
 }
 
 void Bala::Percurso()
@@ -128,22 +132,23 @@ void Bala::Percurso()
     this->z += getVelocidade();
 }
 
-void Bala::setObject(Object* objeto){
+void Bala::setObject(Object* objeto)
+{
     this->bala = objeto;
 }
 
 void Bala::readObject(const char* nome)
 {
-  this->bala = new Object();
-  this->bala->readObject(nome);
+    this->bala = new Object();
+    this->bala->readObject(nome);
 }
 
 void Bala::setVida(bool vida)
 {
-  this->vida = vida;
+    this->vida = vida;
 }
 
 bool Bala::getVida()
 {
-  return this->vida;
+    return this->vida;
 }

@@ -11,29 +11,36 @@
 
 using namespace std;
 
-Object::Object(){
+Object::Object()
+{
     comTextura = 0;
 }
-Object::~Object(){}
+Object::~Object() {}
 
-int Object::getNFaces(){
+int Object::getNFaces()
+{
     return n_faces;
 }
 
-vector<Face> Object::getFaces(){
+vector<Face> Object::getFaces()
+{
     return faces;
 }
-void Object::addFace(Face face){
+void Object::addFace(Face face)
+{
     faces.push_back(face);
 }
 
-void Object::glObject(){
-    for(int i = 0; i < faces.size(); i++){
+void Object::glObject()
+{
+    for(int i = 0; i < faces.size(); i++)
+    {
         faces[i].glFace(comTextura, texture);//mostra o obj
     }
 }
 
-void Object::readObject(const char *nomeArquivo){
+void Object::readObject(const char *nomeArquivo)
+{
     ifstream file;
     file.open(nomeArquivo,ios::in);
 
@@ -41,9 +48,12 @@ void Object::readObject(const char *nomeArquivo){
     vector<Ponto> normais;
     vector<Ponto> texturas;
 
-    if (!file){
+    if (!file)
+    {
         cout << "Problemas na leitura do arquivo" << endl;
-    }else{
+    }
+    else
+    {
 
         string line;
 
@@ -51,7 +61,8 @@ void Object::readObject(const char *nomeArquivo){
         float a = 0,b = 0,c = 0;
         int aresta;
 
-        do{
+        do
+        {
 
 
             vector<Aresta> arestas;
@@ -60,41 +71,53 @@ void Object::readObject(const char *nomeArquivo){
             getline(file, line);
             sline << line;
             sline >> type;
-            if(type == 'v'){
+            if(type == 'v')
+            {
 
                 sline >> a >> b >> c;
-                if(abs(c) > minZ){
+                if(abs(c) > minZ)
+                {
                     minZ = abs(c);
                 }
                 Ponto p = Ponto(a,b,c);
                 pontos.push_back(p);
 
-            }else if(type == 'f'){
+            }
+            else if(type == 'f')
+            {
 
                 vector<int> as;
-                do{
+                do
+                {
                     sline >> aresta;
                     as.push_back(aresta);
-                }while(sline);
+                }
+                while(sline);
 
-                for(int i = 0; i < as.size();i++){
+                for(int i = 0; i < as.size(); i++)
+                {
 
-                    if(i != as.size()-1){
+                    if(i != as.size()-1)
+                    {
                         arestas.push_back( Aresta(pontos[as[i]-1], pontos[as[i+1]-1]) );
-                    } else {
+                    }
+                    else
+                    {
                         arestas.push_back( Aresta(pontos[as[i]-1], pontos[as[0]-1]));
 
                     }
                 }
 
-                for(int i = 0; i < arestas.size();i++){
+                for(int i = 0; i < arestas.size(); i++)
+                {
                     face.addAresta(arestas[i]);
                 }
                 this->addFace(face);
 
             }
 
-        }while(file);
+        }
+        while(file);
         faces.pop_back();
 
     }
@@ -103,93 +126,93 @@ void Object::readObject(const char *nomeArquivo){
 
 float Object::getMinX()
 {
-  float minX = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMinX() <= minX)
+    float minX = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      minX = this->faces[i].getMinX();
+        if(this->faces[i].getMinX() <= minX)
+        {
+            minX = this->faces[i].getMinX();
+        }
     }
-  }
-  return minX;
+    return minX;
 }
 
 float Object::getMinY()
 {
-  float minY = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMinY() <= minY)
+    float minY = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      minY = this->faces[i].getMinY();
+        if(this->faces[i].getMinY() <= minY)
+        {
+            minY = this->faces[i].getMinY();
+        }
     }
-  }
-  return minY;
+    return minY;
 }
 
 float Object::getMinZ()
 {
-  float minZ = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMinZ() <= minZ)
+    float minZ = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      minZ = this->faces[i].getMinZ();
+        if(this->faces[i].getMinZ() <= minZ)
+        {
+            minZ = this->faces[i].getMinZ();
+        }
     }
-  }
-  return minZ;
+    return minZ;
 }
 
 float Object::getMaxX()
 {
-  float maxX = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMaxX() >= maxX)
+    float maxX = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      maxX = this->faces[i].getMaxX();
+        if(this->faces[i].getMaxX() >= maxX)
+        {
+            maxX = this->faces[i].getMaxX();
+        }
     }
-  }
-  return maxX;
+    return maxX;
 }
 
 float Object::getMaxY()
 {
-  float maxY = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMaxY() >= maxY)
+    float maxY = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      maxY = this->faces[i].getMaxY();
+        if(this->faces[i].getMaxY() >= maxY)
+        {
+            maxY = this->faces[i].getMaxY();
+        }
     }
-  }
-  return maxY;
+    return maxY;
 }
 
 float Object::getMaxZ()
 {
-  float maxZ = 0;
-  for(int i = 0; i < this->faces.size(); i++)
-  {
-    if(this->faces[i].getMaxZ() >= maxZ)
+    float maxZ = 0;
+    for(int i = 0; i < this->faces.size(); i++)
     {
-      maxZ = this->faces[i].getMaxZ();
+        if(this->faces[i].getMaxZ() >= maxZ)
+        {
+            maxZ = this->faces[i].getMaxZ();
+        }
     }
-  }
-  return maxZ;
+    return maxZ;
 }
 
 float Object::getLargura()
 {
-  return this->getMaxX() - this->getMinX();
+    return this->getMaxX() - this->getMinX();
 }
 
 float Object::getAltura()
 {
-  return this->getMaxY() - this->getMaxY();
+    return this->getMaxY() - this->getMaxY();
 }
 
 float Object::getProfundidade()
 {
-  return this->getMaxZ() - this->getMaxZ();
+    return this->getMaxZ() - this->getMaxZ();
 }
