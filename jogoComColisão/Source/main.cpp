@@ -18,7 +18,7 @@ using namespace std;
 
 double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
-int theta = 0, qtBalas=0, x=0;
+int theta = 0, qtBalas=0, x=0, ant=0;
 GLfloat ratio;
 GLuint textura;
 
@@ -100,13 +100,19 @@ void display( void )
     if(nave->getVida()){
 
         int dificuldade  = nave->getMortos()*4;
-        if(dificuldade > 250){
-            dificuldade = 250;
+        if(dificuldade > 200){
+            dificuldade = 200;
         }
         if(rand()%(256 - (dificuldade)) == 0){
+            //EVITAR SOBREPOSICAO DE CUBOS
+            int aleat = rand()%400;
+            if((ant < aleat+15) && (ant > aleat-15)){
+                aleat += 100;
+            }
             c.push_back(
-                new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
+                new Cubo(texturas[rand()%texturas.size()], -200 + aleat ,40,250,30)
             );
+            ant = aleat;
         }
 
         for(int i = 0; i < b.size(); i++)
@@ -165,7 +171,7 @@ void display( void )
         s1 << nave->getLimite();
 
         if(x<=80){
-            displayText(200, 30, 255,255,255, "Atire para Ganhar o Semestre");
+            displayText(200, 30, 255,0,0, "Atire para Ganhar o Semestre");
         }
         x++;
         displayText(200,200, 255,0,0, "Computacao Grafica");
@@ -237,15 +243,9 @@ void load()
     texturas.push_back(loadTexture("./Accets/claudio.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/gilianes.ppm", 300, 300));
 
-    /*for(int i = -2; i < 3; i++)
-    {
-        for(int j = 0; j < 4; j++)
-        {
-            c.push_back( new Cubo(texturas[rand()%texturas.size()], i*100,40,j*100,30) );
-        }
-    }*/
-
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0.0, 0.8, 0.0, 1);
+    //nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0, 1);
+
 }
 
 
