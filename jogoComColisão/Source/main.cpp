@@ -18,7 +18,7 @@ using namespace std;
 
 double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
-int theta = 0, qtBalas=0, x=0, qtC=0;
+int theta = 0, qtBalas=0, x=0;
 GLfloat ratio;
 GLuint textura;
 
@@ -105,7 +105,6 @@ void display( void )
             c.push_back(
                 new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
             );
-            qtC++;
         }
 
         for(int i = 0; i < b.size(); i++)
@@ -140,7 +139,7 @@ void display( void )
         PosicUser();
 
         plano(800,5, 0.0);
-        
+
         if(nave->getVida())
         {
             for(int i = 0; i < b.size(); i++)
@@ -178,19 +177,15 @@ void display( void )
     } else {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
-        float prc= qtBalas/qtC;
-        stringstream ss, s2, s3, s4;
+        stringstream ss, s2;
         ss << "Pontuacao ";
         ss << nave->getMortos();
         s2 << "Balas Disparadas ";
         s2 << qtBalas;
-        s3 << "Indice de Acerto " << endl;
-        s3 << prc;
-        s3 << "%";
+
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
-        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-40,255,255,255, ss.str().c_str());
-        displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-100,255,255,255, s2.str().c_str());
-        displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-180,255,255,255, s3.str().c_str());
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-140,255,255,255, ss.str().c_str());
+        displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-220,255,255,255, s2.str().c_str());
     }
 
     glutSwapBuffers();
