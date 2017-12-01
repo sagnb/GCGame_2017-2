@@ -189,7 +189,6 @@ void display( void )
     }
 
     glutSwapBuffers();
-
 }
 
 void keyboard ( unsigned char key, int x, int y )
@@ -245,7 +244,7 @@ void load()
         }
     }*/
 
-    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0.0, 0.8, 0.0, 1);
 }
 
 
@@ -257,7 +256,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowPosition (0,0);
     glutInitWindowSize(600, 500);
-    glutCreateWindow("Leitura de OBJ");
+    glutCreateWindow("Game");
 
     load();
     init();
