@@ -183,7 +183,7 @@ void display( void )
         s2 << "Balas Disparadas ";
         s2 << qtBalas;
 
-        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-50,255,255,255, "GAME OVER");
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-140,255,255,255, ss.str().c_str());
         displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-220,255,255,255, s2.str().c_str());
     }
