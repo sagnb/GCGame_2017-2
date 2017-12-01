@@ -27,6 +27,7 @@ private:
     float b;
     float alpha;
     int mortos;
+    int limite;
 
 public:
     Player();
@@ -51,7 +52,6 @@ public:
     void moveEsq();
     bool IntervaloX(float x);
     bool IntervaloY(float y);
-    //void Colisao(Cubo *cubo);
     void drawPlayer();
     float getEscalaX();
     float getEscalaY();
@@ -73,6 +73,10 @@ public:
     void defineLuz();
     void addMortos();
     int getMortos();
+    int getLimite();
+    void setLimite(int l);
+    void Tiro();
+    void Bonus();
 };
 
 #endif

@@ -18,7 +18,7 @@ using namespace std;
 
 double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
-int theta = 0;
+int theta = 0, qtBalas=0, x=0, qtC=0;
 GLfloat ratio;
 GLuint textura;
 
@@ -99,14 +99,13 @@ void display( void )
 
     if(nave->getVida()){
 
-        int dificuldade  = nave->getMortos();
+        int dificuldade  = nave->getMortos()*4;
         if(dificuldade > 200) dificuldade = 200;
         if(rand()%(256 - (dificuldade)) == 0){
-
             c.push_back(
                 new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
             );
-
+            qtC++;
         }
 
         for(int i = 0; i < b.size(); i++)
@@ -117,6 +116,7 @@ void display( void )
                 b.pop_back();
             }
         }
+
         if(nave->getVida())
         {
             for(int i = 0; i < c.size(); i++)
@@ -129,14 +129,18 @@ void display( void )
             }
         }
 
+        if(dificuldade/4 < nave->getMortos()){
+            nave->Bonus();
+        }
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
         PosicUser();
 
-
         plano(800,5, 0.0);
+        
         if(nave->getVida())
         {
             for(int i = 0; i < b.size(); i++)
@@ -145,7 +149,6 @@ void display( void )
                 b[i]->drawBala();
             }
         }
-
 
         glEnable( GL_TEXTURE_2D );
 
@@ -161,14 +164,33 @@ void display( void )
             nave->defineLuz();
         }
 
+        stringstream s1;
+        s1 << nave->getLimite();
+
+        if(x<=80){
+            displayText(200, 30, 255,255,255, "Atire para Ganhar o Semestre");
+        }
+        x++;
+        displayText(200,200, 255,0,0, "Computacao Grafica");
+        displayText(-80,200, 255,0,0, "Balas");
+        displayText(-140,200, 255,0,0, s1.str().c_str());
+
     } else {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
-        stringstream ss;
+        float prc= qtBalas/qtC;
+        stringstream ss, s2, s3, s4;
         ss << "Pontuacao ";
         ss << nave->getMortos();
+        s2 << "Balas Disparadas ";
+        s2 << qtBalas;
+        s3 << "Indice de Acerto " << endl;
+        s3 << prc;
+        s3 << "%";
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-40,255,255,255, ss.str().c_str());
+        displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-100,255,255,255, s2.str().c_str());
+        displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-180,255,255,255, s3.str().c_str());
     }
 
     glutSwapBuffers();
@@ -189,9 +211,13 @@ void keyboard ( unsigned char key, int x, int y )
         nave->moveDir();
         break;
     case ' ': //espaco
-        if(nave->getVida())
+        if(nave->getVida() && (nave->getLimite() > 0))
         {
             b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
+            qtBalas +=1;
+            nave->Tiro();
+        }else{
+            nave->setVida(false);
         }
         break;
     default:

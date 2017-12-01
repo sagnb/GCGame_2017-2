@@ -17,7 +17,6 @@ private:
     int velocidade;
     bool vida;
 
-
 public:
 
     Bala();
