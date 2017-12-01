@@ -368,3 +368,7 @@ void Player::Bonus(){
 void Player::setLimite(int l){
     this->limite = l;
 }
+
+void Player::setMortos(int m){
+    this->mortos = m;
+}

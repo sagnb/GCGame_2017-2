@@ -73,6 +73,7 @@ public:
     void defineLuz();
     void addMortos();
     int getMortos();
+    void setMortos(int m);
     int getLimite();
     void setLimite(int l);
     void Tiro();

@@ -100,7 +100,9 @@ void display( void )
     if(nave->getVida()){
 
         int dificuldade  = nave->getMortos()*4;
-        if(dificuldade > 200) dificuldade = 200;
+        if(dificuldade > 250){
+            dificuldade = 250;
+        }
         if(rand()%(256 - (dificuldade)) == 0){
             c.push_back(
                 new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
@@ -126,10 +128,6 @@ void display( void )
             {
                 c[i]->Colisao(b, nave);
             }
-        }
-
-        if(dificuldade/4 < nave->getMortos()){
-            nave->Bonus();
         }
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -174,6 +172,11 @@ void display( void )
         displayText(-80,200, 255,0,0, "Balas");
         displayText(-140,200, 255,0,0, s1.str().c_str());
 
+        //SEM BALAS
+        if(nave->getLimite() <= 0 && b.size() <= 0){
+            nave->setVida(false);
+        }
+
     } else {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
@@ -183,13 +186,12 @@ void display( void )
         s2 << "Balas Disparadas ";
         s2 << qtBalas;
 
-        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-50,255,255,255, "GAME OVER");
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-140,255,255,255, ss.str().c_str());
         displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-220,255,255,255, s2.str().c_str());
     }
 
     glutSwapBuffers();
-
 }
 
 void keyboard ( unsigned char key, int x, int y )
@@ -211,8 +213,6 @@ void keyboard ( unsigned char key, int x, int y )
             b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
             qtBalas +=1;
             nave->Tiro();
-        }else{
-            nave->setVida(false);
         }
         break;
     default:
@@ -245,7 +245,7 @@ void load()
         }
     }*/
 
-    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0.0, 0.8, 0.0, 1);
 }
 
 
@@ -257,7 +257,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowPosition (0,0);
     glutInitWindowSize(600, 500);
-    glutCreateWindow("Leitura de OBJ");
+    glutCreateWindow("Game");
 
     load();
     init();

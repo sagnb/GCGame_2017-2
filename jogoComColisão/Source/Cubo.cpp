@@ -150,8 +150,13 @@ void Cubo::Colisao(vector <Bala*> balas, Player *play)
                         this->setVida(false);
                         balas[i]->setVida(false);
                         play->addMortos();
+                        play->Bonus();
                     }
 
+                }
+                //PASSOU OS LIMITES DO PLANO
+                if(balas[i]->getZ() > 300){
+                  balas[i]->setVida(false);
                 }
             }
             //exit(-1);
@@ -164,6 +169,11 @@ void Cubo::Colisao(vector <Bala*> balas, Player *play)
             setVida(false);
             play->setVida(false); //PERDEU COLISAO ENTRE PERSONAGEM E CUBO
             //  }
+        }
+
+        //CUBO PASSOU PELO JOGADOR
+        if(this->getZ() < play->getZ()){
+          play->setVida(false);
         }
     }
 }
