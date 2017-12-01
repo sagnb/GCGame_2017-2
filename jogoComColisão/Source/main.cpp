@@ -183,12 +183,13 @@ void display( void )
         s2 << "Balas Disparadas ";
         s2 << qtBalas;
 
-        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
+        displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-50,255,255,255, "GAME OVER");
         displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-140,255,255,255, ss.str().c_str());
         displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-220,255,255,255, s2.str().c_str());
     }
 
     glutSwapBuffers();
+
 }
 
 void keyboard ( unsigned char key, int x, int y )
@@ -244,7 +245,7 @@ void load()
         }
     }*/
 
-    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0.0, 0.8, 0.0, 1);
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0, 0, 0.3, 1);
 }
 
 
@@ -256,7 +257,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowPosition (0,0);
     glutInitWindowSize(600, 500);
-    glutCreateWindow("Game");
+    glutCreateWindow("Leitura de OBJ");
 
     load();
     init();
