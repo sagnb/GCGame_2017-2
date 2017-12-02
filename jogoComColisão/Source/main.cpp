@@ -13,12 +13,13 @@
 #include <string>
 #include <cstring>
 #include <sstream>
+//#define SOM "./Accets/Powder.mp3"
 
 using namespace std;
 
 double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
-int theta = 0, qtBalas=0, x=0, ant=0;
+int theta = 0, qtBalas=0,mouseX=0;
 GLfloat ratio;
 GLuint textura;
 
@@ -51,7 +52,6 @@ void init(void)
     glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
-
 }
 
 void reshape( int w, int h )
@@ -104,15 +104,10 @@ void display( void )
             dificuldade = 200;
         }
         if(rand()%(256 - (dificuldade)) == 0){
-            //EVITAR SOBREPOSICAO DE CUBOS
-            int aleat = rand()%400;
-            if((ant < aleat+15) && (ant > aleat-15)){
-                aleat += 100;
-            }
+
             c.push_back(
-                new Cubo(texturas[rand()%texturas.size()], -200 + aleat ,40,250,30)
+                new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,40,250,30)
             );
-            ant = aleat;
         }
 
         for(int i = 0; i < b.size(); i++)
@@ -148,8 +143,10 @@ void display( void )
         {
             for(int i = 0; i < b.size(); i++)
             {
-                b[i]->Percurso();
-                b[i]->drawBala();
+
+                  b[i]->Percurso();
+                  b[i]->drawBala();
+              
             }
         }
 
@@ -170,13 +167,9 @@ void display( void )
         stringstream s1;
         s1 << nave->getLimite();
 
-        if(x<=80){
-            displayText(200, 30, 255,0,0, "Bla bla");
-        }
-        x++;
         displayText(200,200, 255,0,0, "Computacao Grafica");
         displayText(-80,200, 255,0,0, "Balas");
-        displayText(-140,200, 255,0,0, s1.str().c_str());
+        displayText(-130,200, 255,0,0, s1.str().c_str());
 
         //SEM BALAS
         if(nave->getLimite() <= 0 && b.size() <= 0){
@@ -215,11 +208,11 @@ void keyboard ( unsigned char key, int x, int y )
         break;
     case ' ': //espaco
         if(nave->getVida() && (nave->getLimite() > 0))
-        {
+         {
             b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
             qtBalas +=1;
             nave->Tiro();
-        }
+          }
         break;
     default:
 
@@ -247,6 +240,24 @@ void load()
 
 }
 
+void Mouse(int button, int state, int x, int y){
+    if (button == GLUT_LEFT_BUTTON){
+            nave->moveEsq();
+
+    }else if(button == GLUT_RIGHT_BUTTON ){
+            nave->moveDir();
+    }
+}
+
+void moviMouse(int x, int y){
+
+          if (x > mouseX){
+                nave->moveDir();
+          }else{
+                nave->moveEsq();
+          }
+          mouseX = x;
+}
 
 int main(int argc, char** argv)
 {
@@ -255,7 +266,7 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowPosition (0,0);
-    glutInitWindowSize(600, 500);
+    glutInitWindowSize(800, 700);
     glutCreateWindow("Game");
 
     load();
@@ -264,10 +275,14 @@ int main(int argc, char** argv)
     glutDisplayFunc ( display );
     glutReshapeFunc ( reshape );
     glutKeyboardFunc ( keyboard );
+    glutMouseFunc( Mouse );
+     glutPassiveMotionFunc( moviMouse );
+
     glutTimerFunc(10, timer, 0);
     glutIdleFunc ( display );
 
     glutMainLoop ( );
+
     return 0;
 
 }
