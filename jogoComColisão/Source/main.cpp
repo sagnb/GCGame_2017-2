@@ -171,7 +171,7 @@ void display( void )
         s1 << nave->getLimite();
 
         if(x<=80){
-            displayText(200, 30, 255,0,0, "Atire para Ganhar o Semestre");
+            displayText(200, 30, 255,0,0, "Bla bla");
         }
         x++;
         displayText(200,200, 255,0,0, "Computacao Grafica");
@@ -236,14 +236,13 @@ void load()
     objnave->readObject("./Accets/ship.obj");
     objbala->readObject("./Accets/bala.obj");
 
-    texturas.push_back(loadTexture("./Accets/kepler.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/thielo.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/jean.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/diego.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/claudio.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/gilianes.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/c2.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/marr.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
+    //TEXTURA COLORIDA
+    //texturas.push_back(loadTexture("./Accets/uni.ppm", 300, 300));
 
-    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 0.0, 0.8, 0.0, 1);
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0.0, 1);
     //nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0, 1);
 
 }
