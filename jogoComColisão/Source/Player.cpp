@@ -120,12 +120,12 @@ void Player::setProfundidade(float pro)
 
 void Player::moveDir()
 {
-    this->x-=7;
+    this->x-=4;
 }
 
 void Player::moveEsq()
 {
-    this->x+=7;
+    this->x+=4;
 }
 
 bool Player::IntervaloX(float x)
