@@ -41,6 +41,8 @@ vector <Star*> s;
 
 void normalize(float* init);
 GLuint loadTexture(const char* nome, int width, int height);
+void plano(float x, float y, float z, float escalaX, float escalaY, float escalaZ);
+void plano2(float x, float y, float z, float escalaX, float escalaY, float escalaZ);
 
 
 void init(void)
@@ -120,7 +122,7 @@ void display( void )
             {
 
                 c.push_back(
-                    new Cubo(texturas[rand()%texturas.size()], -200 + rand()%400 ,10,250,30)
+                    new Cubo(texturas[rand()%(texturas.size()-1)], -200 + rand()%400 ,10,250,30)
                 );
             }
             if(rand()%10 > 5)
@@ -170,7 +172,23 @@ void display( void )
 
             PosicUser();
 
+            glEnable( GL_TEXTURE_2D );
 
+            for(int i = -1200; i <= 1200; i+=400)
+            {
+            plano(i, -200, 0, 200, 0, 200);
+            plano(i, -200, 400, 200, 0, 200);
+            plano(i, -200, -400, 200, 0, 200);
+            }
+
+            for(int i = -1200; i <= 1200; i+=400)
+            {
+            plano2(i, 0, 250, 200, 200, 0);
+            plano2(i, 400, 250, 200, 200, 0);
+            plano2(i, 400, 250, 200, 200, 0);
+            }
+
+            glDisable( GL_TEXTURE_2D );
 
             for(int i = 0; i < s.size(); i++)
             {
@@ -290,10 +308,11 @@ void load()
     texturas.push_back(loadTexture("./Accets/c2.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/marr.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/uni.ppm", 300, 300));
     //TEXTURA COLORIDA
     //texturas.push_back(loadTexture("./Accets/uni.ppm", 300, 300));
 
-    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0.0, 1);
+    nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 1.0f, 2.5f, 1.0f, 1);
 
     //nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0, 1);
 
@@ -422,4 +441,48 @@ GLuint loadTexture(const char* nome, int width, int height)
 
     delete []data;
     return textura;
+}
+
+void plano(float x, float y, float z, float escalaX, float escalaY, float escalaZ)
+{
+  glPushMatrix();
+  glTranslatef(x, y, z  );
+  glScalef(escalaX,escalaY,escalaZ);
+
+  glColor4f(1.0,1.0,1.0, 1.0);
+
+  glBindTexture( GL_TEXTURE_2D, texturas[3]);
+  glBegin (GL_QUADS);
+  glTexCoord2f(0.0, 0.0);
+  glVertex3f(-1.0, 1.0, -1.0);
+  glTexCoord2f(0.0, 1.0);
+  glVertex3f(-1.0, 1.0, 1.0);
+  glTexCoord2f(1.0, 1.0);
+  glVertex3f(1.0, 1.0, 1.0);
+  glTexCoord2f(1.0, 0.0);
+  glVertex3f(1.0,1.0, -1.0);
+  glEnd();
+  glPopMatrix();
+}
+
+void plano2(float x, float y, float z, float escalaX, float escalaY, float escalaZ)
+{
+  glPushMatrix();
+  glTranslatef(x, y, z  );
+  glScalef(escalaX,escalaY,escalaZ);
+
+  glColor4f(1.0,1.0,1.0, 1.0);
+
+  glBindTexture( GL_TEXTURE_2D, texturas[3]);
+  glBegin (GL_QUADS);
+  glTexCoord2f(0.0, 0.0);
+  glVertex3f(-1.0, -1.0, -1.0);
+  glTexCoord2f(0.0, 1.0);
+  glVertex3f(-1.0, 1.0, -1.0);
+  glTexCoord2f(1.0, 1.0);
+  glVertex3f(1.0, 1.0, -1.0);
+  glTexCoord2f(1.0, 0.0);
+  glVertex3f(1.0, -1.0, -1.0);
+  glEnd();
+  glPopMatrix();
 }

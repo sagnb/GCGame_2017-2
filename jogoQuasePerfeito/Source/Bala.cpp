@@ -121,7 +121,7 @@ void Bala::drawBala()
         glTranslatef(this->getX(), this->getY(), this->getZ());
         glScalef(2, 2, 2);
         glRotatef(90,1,0,0);
-        glColor4f(255,0.0f,0.3f, 1.0f);
+        glColor4f(1.0f, 2.5f, 1.0f, 1.0f);
         this->bala->glObject();
         glPopMatrix();
     }

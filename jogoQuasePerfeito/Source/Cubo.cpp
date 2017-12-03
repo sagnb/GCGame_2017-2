@@ -35,7 +35,7 @@ Cubo::Cubo(GLuint textura, float x, float y, float z, float lado)
     this->setVida(true);
     this->texture = textura;
     this->setXAnt(0);
-    this->setVelocidade(2);
+    this->setVelocidade(1);
 }
 
 Cubo::~Cubo()
