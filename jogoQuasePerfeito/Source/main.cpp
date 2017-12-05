@@ -14,7 +14,7 @@
 #include <string>
 #include <cstring>
 #include <sstream>
-#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_mixer.h> // sudo apt install libsdl-mixer2-dev
 #include <SDL/SDL.h>
 
 Mix_Music *musica = NULL; //música de fundo
@@ -310,10 +310,11 @@ void load()
 
     objnave->readObject("./Accets/ship.obj");
     objbala->readObject("./Accets/bala.obj");
-
-    texturas.push_back(loadTexture("./Accets/c2.ppm", 300, 300));
+//c2
+    texturas.push_back(loadTexture("./Accets/ini.ppm", 300, 300));
+		texturas.push_back(loadTexture("./Accets/inip.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/marr.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
+  //  texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/uni2.ppm", 300, 300));
 
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 1.0f, 2.5f, 1.0f, 1);

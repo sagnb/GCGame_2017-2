@@ -157,7 +157,7 @@ void Player::drawPlayer()
     this->nave->glObject();
     glPopMatrix();
 
-    glPushMatrix();
+  /*  glPushMatrix();
     glColor4f(0.0,0.0,1.0, 1.0);
 
 
@@ -165,7 +165,7 @@ void Player::drawPlayer()
     glVertex3f(this->getX(), 10, -200);
     glVertex3f(this->getX(), 10, 250);
     glEnd();
-    glPopMatrix();
+    glPopMatrix();*/
 }
 
 float Player::getEscalaX()
