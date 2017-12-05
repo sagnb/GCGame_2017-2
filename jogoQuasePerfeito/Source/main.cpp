@@ -280,13 +280,14 @@ void keyboard ( unsigned char key, int x, int y )
     case 27:
         exit (0);
         break;
-    /*
+
     case 'a':
     nave->moveEsq();
     break;
     case 'd':
     nave->moveDir();
     break;
+		/*
     case ' ': //espaco
     if(nave->getVida() && (nave->getLimite() > 0))
      {
@@ -352,7 +353,7 @@ void Mouse(int button, int state, int x, int y)
 
 void moviMouse(int x, int y)
 {
-
+/*
     if(moveNave%2 == 1)
     {
 
@@ -368,7 +369,7 @@ void moviMouse(int x, int y)
         }
         mouseX = x;
     }
-
+*/
 }
 
 int Musica(){
@@ -403,7 +404,7 @@ int main(int argc, char** argv)
     init();
 		Musica();
 
-
+		glutFullScreen();
     glutDisplayFunc ( display );
     glutReshapeFunc ( reshape );
     glutKeyboardFunc ( keyboard );

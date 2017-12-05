@@ -120,12 +120,12 @@ void Player::setProfundidade(float pro)
 
 void Player::moveDir()
 {
-    this->x-=4;
+    this->x-=10;
 }
 
 void Player::moveEsq()
 {
-    this->x+=4;
+    this->x+=10;
 }
 
 bool Player::IntervaloX(float x)
@@ -157,15 +157,15 @@ void Player::drawPlayer()
     this->nave->glObject();
     glPopMatrix();
 
-  /*  glPushMatrix();
-    glColor4f(0.0,0.0,1.0, 1.0);
+    glPushMatrix();
+    glColor4f(1.0,0.0,0.0, 1.0);
 
 
     glBegin (GL_LINES);
     glVertex3f(this->getX(), 10, -200);
     glVertex3f(this->getX(), 10, 250);
     glEnd();
-    glPopMatrix();*/
+    glPopMatrix();
 }
 
 float Player::getEscalaX()

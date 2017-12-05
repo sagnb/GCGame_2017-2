@@ -179,6 +179,7 @@ void Cubo::Colisao(vector <Bala*> balas, Player *play)
         {
             play->setVida(false);
         }
+
     }
 }
 
@@ -317,7 +318,11 @@ GLuint Cubo::loadTexture(const char* nome, int width, int height)
 
 void Cubo::ia(Player *nave)
 {
-    if(this->IntervaloX(nave->getX()))
+    if (this->getX() >= 250 || this->getX() <= -250)
+    {
+      this->setVelocidade(-this->getVelocidade());
+    }
+    else if(this->IntervaloX(nave->getX()))
     {
         int anda = rand()%2;
 
@@ -334,10 +339,6 @@ void Cubo::ia(Player *nave)
 
     }
 
-    else if (this->getX() >= 250 || this->getX() <= -250)
-    {
-        this->setVelocidade(-this->getVelocidade());
-    }
 
     this->setX(getX() + this->getVelocidade());
 
