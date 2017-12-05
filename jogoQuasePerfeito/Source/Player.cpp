@@ -38,7 +38,7 @@ Player::Player(Object* objeto, float x, float y, float z, float escalaX, float e
     this->setProfundidade(this->nave->getProfundidade());
     this->setVida(true);
     this->setColor(r, g, b, alpha);
-    this->limite = 10;
+    this->limite = 15;
     this->mortos = 0;
 }
 
@@ -146,15 +146,6 @@ bool Player::IntervaloY(float y)
     }
     return false;
 }
-
-/*void Player::Colisao(Cubo *cubo){
-  if(IntervaloX(cubo->getX()) && IntervaloY(cubo->getY())){
-      if(IntervaloX(cubo->getX()+cubo->getLado()) && IntervaloY(cubo->getY() + cubo->getLado())){
-            this->setVida(false);
-      }
-  }
-
-}*/
 
 void Player::drawPlayer()
 {

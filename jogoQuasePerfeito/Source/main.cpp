@@ -14,16 +14,16 @@
 #include <string>
 #include <cstring>
 #include <sstream>
-//#define SOM "./Accets/Powder.mp3"
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL.h>
+
+Mix_Music *musica = NULL; //música de fundo
 
 using namespace std;
 
-
-int moveNave = 0;
-
 double CamX = 0, CamY = 0, CamZ = 0;
 float angle = 0;
-int theta = 0, qtBalas=0,mouseX=0;
+int theta = 0, qtBalas=0,mouseX=0, moveNave = 0;
 GLfloat ratio;
 GLuint textura;
 
@@ -36,14 +36,19 @@ vector <Cubo*> c;
 vector <GLuint> texturas;
 vector <Star*> s;
 
-
-
-
 void normalize(float* init);
 GLuint loadTexture(const char* nome, int width, int height);
 void plano(float x, float y, float z, float escalaX, float escalaY, float escalaZ);
 void plano2(float x, float y, float z, float escalaX, float escalaY, float escalaZ);
+Mix_Music *carregarMus(const char *nome);
+int Musica();
 
+Mix_Music *carregarMus(const char *nome){
+	 Mix_Music *mus = Mix_LoadMUS(nome);
+	  if(!mus)
+		    printf("ERRO> arquivo:'%s'\n",nome);
+	  return mus;
+}
 
 void init(void)
 {
@@ -62,6 +67,7 @@ void init(void)
     glFrontFace(GL_CW);    //
     glCullFace(GL_FRONT);  //  Estas tres fazem o culling funcionar
     glEnable(GL_CULL_FACE);//
+
 }
 
 void reshape( int w, int h )
@@ -308,13 +314,9 @@ void load()
     texturas.push_back(loadTexture("./Accets/c2.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/marr.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
-    texturas.push_back(loadTexture("./Accets/uni.ppm", 300, 300));
-    //TEXTURA COLORIDA
-    //texturas.push_back(loadTexture("./Accets/uni.ppm", 300, 300));
+    texturas.push_back(loadTexture("./Accets/uni2.ppm", 300, 300));
 
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 1.0f, 2.5f, 1.0f, 1);
-
-    //nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 255, 0, 0, 1);
 
 }
 
@@ -368,7 +370,24 @@ void moviMouse(int x, int y)
 
 }
 
+int Musica(){
+				if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 )
+							return -1;
 
+				//musica = carregarMus("./Accets/Powder.mp3");
+				musica = carregarMus("./Accets/Cub.ogg");
+
+				if( Mix_PlayingMusic() == 0 ){ // sem música
+							if( Mix_PlayMusic( musica, -1 ) == -1 ) //- play música
+												printf("ERRO> Mix_PlayMusic\n");
+				}else{
+									if( Mix_PausedMusic() == 1 ){
+						            Mix_ResumeMusic(); // continua tacando
+									}else{
+						            Mix_PauseMusic(); // pausar música
+									}
+				}
+}
 int main(int argc, char** argv)
 {
 
@@ -376,11 +395,13 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowPosition (0,0);
-    glutInitWindowSize(800, 700);
+    glutInitWindowSize(1000, 700);
     glutCreateWindow("Game");
 
     load();
     init();
+		Musica();
+
 
     glutDisplayFunc ( display );
     glutReshapeFunc ( reshape );
@@ -391,8 +412,10 @@ int main(int argc, char** argv)
     glutTimerFunc(10, timer, 0);
     glutIdleFunc ( display );
 
-    glutMainLoop ( );
 
+    glutMainLoop ( );
+		Mix_FreeMusic(musica);
+		Mix_CloseAudio();
     return 0;
 
 }
