@@ -28,6 +28,8 @@ private:
     float alpha;
     int mortos;
     int limite;
+    bool andandoEsquerda;
+    bool andandoDireita;
 
 public:
     Player();
@@ -78,6 +80,8 @@ public:
     void setLimite(int l);
     void Tiro();
     void Bonus();
+    void setAndandoEsquerda(bool op);
+    void setAndandoDireita(bool op);
 };
 
 #endif

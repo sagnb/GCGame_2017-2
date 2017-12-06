@@ -55,6 +55,7 @@ void init(void)
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
+    glutSetCursor(GLUT_CURSOR_NONE);
 
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Fundo de tela preto
     glShadeModel(GL_SMOOTH);
@@ -182,16 +183,16 @@ void display( void )
 
             for(int i = -1200; i <= 1200; i+=400)
             {
-            plano(i, -200, 0, 200, 0, 200);
-            plano(i, -200, 400, 200, 0, 200);
-            plano(i, -200, -400, 200, 0, 200);
+                plano(i, -200, 0, 200, 0, 200);
+                plano(i, -200, 400, 200, 0, 200);
+                plano(i, -200, -400, 200, 0, 200);
             }
 
             for(int i = -1200; i <= 1200; i+=400)
             {
-            plano2(i, 0, 250, 200, 200, 0);
-            plano2(i, 400, 250, 200, 200, 0);
-            plano2(i, 400, 250, 200, 200, 0);
+                plano2(i, 0, 250, 200, 200, 0);
+                plano2(i, 400, 250, 200, 200, 0);
+                plano2(i, 400, 250, 200, 200, 0);
             }
 
             glDisable( GL_TEXTURE_2D );
@@ -273,33 +274,48 @@ void display( void )
     }
 }
 
-void keyboard ( unsigned char key, int x, int y )
+void keyboard_down ( unsigned char key, int x, int y )
 {
-    switch (key)
-    {
-    case 27:
-        exit (0);
-        break;
+    switch (key){
 
-    case 'a':
-    nave->moveEsq();
-    break;
-    case 'd':
-    nave->moveDir();
-    break;
-		/*
-    case ' ': //espaco
-    if(nave->getVida() && (nave->getLimite() > 0))
-     {
-        b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
-        qtBalas +=1;
-        nave->Tiro();
-      }
-    break;
-    */
-    default:
+        case 27:
+            exit (0);
+            break;
 
-        break;
+        case 'a':
+            nave->setAndandoEsquerda(true);
+            break;
+
+        case 'd':
+            nave->setAndandoDireita(true);
+            break;
+
+        case ' ': //espaco
+            if(nave->getVida() && (nave->getLimite() > 0)){
+                b.push_back(new Bala(objbala, nave->getX(), 10, -200, 2));
+                qtBalas +=1;
+                nave->Tiro();
+            }
+            break;
+
+        default:
+            break;
+
+    }
+}
+
+void keyboard_up ( unsigned char key, int x, int y )
+{
+    switch (key){
+
+        case 'a':
+            nave->setAndandoEsquerda(false);
+            break;
+
+        case 'd':
+            nave->setAndandoDireita(false);
+            break;
+
     }
 }
 
@@ -313,9 +329,9 @@ void load()
     objbala->readObject("./Accets/bala.obj");
 //c2
     texturas.push_back(loadTexture("./Accets/ini.ppm", 300, 300));
-		texturas.push_back(loadTexture("./Accets/inip.ppm", 300, 300));
+	texturas.push_back(loadTexture("./Accets/inip.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/marr.ppm", 300, 300));
-  //  texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
+    //texturas.push_back(loadTexture("./Accets/c7.ppm", 300, 300));
     texturas.push_back(loadTexture("./Accets/uni2.ppm", 300, 300));
 
     nave = new Player(objnave, 0, 15, -200, 4, 4, 4, 1.0f, 2.5f, 1.0f, 1);
@@ -373,23 +389,22 @@ void moviMouse(int x, int y)
 }
 
 int Musica(){
-				if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 )
-							return -1;
+	if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 ) return -1;
+	//musica = carregarMus("./Accets/Powder.mp3");
+	musica = carregarMus("./Accets/Cub.ogg");
 
-				//musica = carregarMus("./Accets/Powder.mp3");
-				musica = carregarMus("./Accets/Cub.ogg");
-
-				if( Mix_PlayingMusic() == 0 ){ // sem música
-							if( Mix_PlayMusic( musica, -1 ) == -1 ) //- play música
-												printf("ERRO> Mix_PlayMusic\n");
-				}else{
-									if( Mix_PausedMusic() == 1 ){
-						            Mix_ResumeMusic(); // continua tacando
-									}else{
-						            Mix_PauseMusic(); // pausar música
-									}
-				}
+	if( Mix_PlayingMusic() == 0 ){ // sem música
+        if( Mix_PlayMusic( musica, -1 ) == -1 ) //- play música
+            printf("ERRO> Mix_PlayMusic\n");
+	}else{
+        if( Mix_PausedMusic() == 1 ){
+            Mix_ResumeMusic(); // continua tacando
+        }else{
+            Mix_PauseMusic(); // pausar música
+        }
+	}
 }
+
 int main(int argc, char** argv)
 {
 
@@ -402,12 +417,13 @@ int main(int argc, char** argv)
 
     load();
     init();
-		Musica();
+    Musica();
 
-		glutFullScreen();
+    glutFullScreen();
     glutDisplayFunc ( display );
     glutReshapeFunc ( reshape );
-    glutKeyboardFunc ( keyboard );
+    glutKeyboardFunc (keyboard_down);
+    glutKeyboardUpFunc (keyboard_up);
     glutMouseFunc( Mouse );
     glutPassiveMotionFunc( moviMouse );
 
@@ -416,8 +432,8 @@ int main(int argc, char** argv)
 
 
     glutMainLoop ( );
-		Mix_FreeMusic(musica);
-		Mix_CloseAudio();
+    Mix_FreeMusic(musica);
+    Mix_CloseAudio();
     return 0;
 
 }

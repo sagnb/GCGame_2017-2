@@ -22,6 +22,8 @@ Player::Player(char* nomeArquivo, float x, float y, float z, float escalaX, floa
     this->setColor(r, g, b, alpha);
     this->limite = 10;
     this->mortos = 0;
+    this->andandoEsquerda = false;
+    this->andandoDireita = false;
 }
 
 Player::Player(Object* objeto, float x, float y, float z, float escalaX, float escalaY, float escalaZ, float r, float g, float b, float alpha)
@@ -40,6 +42,9 @@ Player::Player(Object* objeto, float x, float y, float z, float escalaX, float e
     this->setColor(r, g, b, alpha);
     this->limite = 15;
     this->mortos = 0;
+    this->andandoEsquerda = false;
+    this->andandoDireita = false;
+    
 }
 
 
@@ -120,12 +125,12 @@ void Player::setProfundidade(float pro)
 
 void Player::moveDir()
 {
-    this->x-=10;
+    this->x-=6;
 }
 
 void Player::moveEsq()
 {
-    this->x+=10;
+    this->x+=6;
 }
 
 bool Player::IntervaloX(float x)
@@ -150,6 +155,16 @@ bool Player::IntervaloY(float y)
 void Player::drawPlayer()
 {
     //
+    
+    if(andandoEsquerda){
+        cout << andandoEsquerda << "\n";
+        this->moveEsq();
+    }
+    if(andandoDireita){
+        cout << andandoDireita << "\n";
+        this->moveDir();
+    }
+    
     glPushMatrix();
     glTranslatef(this->getX(), this->getY(),this->getZ());
     glScalef(this->getEscalaX(), this->getEscalaY(), this->getEscalaZ());
@@ -377,4 +392,11 @@ void Player::setLimite(int l)
 void Player::setMortos(int m)
 {
     this->mortos = m;
+}
+
+void Player::setAndandoEsquerda(bool op){
+    this->andandoEsquerda = op;
+}
+void Player::setAndandoDireita(bool op){
+    this->andandoDireita = op;
 }
