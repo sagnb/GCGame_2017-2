@@ -253,7 +253,7 @@ void display( void )
             s2 << "Balas Disparadas ";
             s2 << qtBalas;
 
-            displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
+            displayText(GLUT_SCREEN_WIDTH/2-30,GLUT_SCREEN_HEIGHT/2,255,255,255, "GAME OVER");
             displayText(GLUT_SCREEN_WIDTH/2,GLUT_SCREEN_HEIGHT/2-140,255,255,255, ss.str().c_str());
             displayText(GLUT_SCREEN_WIDTH/2+55,GLUT_SCREEN_HEIGHT/2-220,255,255,255, s2.str().c_str());
         }
@@ -268,9 +268,9 @@ void display( void )
         PosicUser();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
-        displayText(GLUT_SCREEN_WIDTH/2+200,GLUT_SCREEN_HEIGHT/2,255,255,255, "APERTE A TECLA BACKSPACE PARA COMECAR E ATIRAR NOS INIMIGOS");
+        displayText(GLUT_SCREEN_WIDTH/2+200,GLUT_SCREEN_HEIGHT/2,255,255,255, "APERTE A BARRA DE ESPACO PARA COMECAR E ATIRAR NOS INIMIGOS");
         displayText(GLUT_SCREEN_WIDTH/2-100,GLUT_SCREEN_HEIGHT/2-60,255,255,255, "E");
-        displayText(GLUT_SCREEN_WIDTH/2+80,GLUT_SCREEN_HEIGHT/2-120,255,255,255, "MOVA A NAVE COM AS TECLAS a E d");
+        displayText(GLUT_SCREEN_WIDTH/2+100,GLUT_SCREEN_HEIGHT/2-120,255,255,255, "MOVA A NAVE COM AS TECLAS 'A' E 'D'");
         glutSwapBuffers();
     }
 }

@@ -164,7 +164,7 @@ void Inimigo::drawInimigo()
         glPushMatrix();
         glTranslatef(this->getX(), this->getY(),this->getZ());
         glScalef(this->getRaio(), this->getRaio(), this->getRaio());
-        glColor4f(0.0f, 1.0f, 1.0f, 1.0f);
+        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         this->objeto->glObject();
         glPopMatrix();
     }

@@ -310,15 +310,15 @@ void Player::defineLuz()
     glEnable(GL_LIGHT0);
 
     //definição dos parametros da luz 0
-    GLfloat posLuz1[] = {0, 15, 20, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
-    GLfloat corLuz1[] = {1.0, 1.0, 1.0}; //cor e intensidade da luz
+    GLfloat posLuz1[] = {0, 15, 10, 1}; //posicao da luz(w=(1 = luz na posição exata, 0= luz vinda do infinito))
+    GLfloat corLuz1[] = {100.0, 100.0, 100.0}; //cor e intensidade da luz
     GLfloat dirLuz1[] = {0.0, 0.0, 0.0}; //direcao da luz
     GLfloat angulo1 = 45.0;// angulo de abertura(]0º,90º[ ou 180º)
     GLfloat foco1 = 20; //grau de concentração(]0,120[)
 
     posLuz1[0]= this->getX();
-    posLuz1[1]=22;
-    posLuz1[2]=-230;
+    posLuz1[1]= this->getY();
+    posLuz1[2]= this->getZ()+16;
 
     dirLuz1[0] = 0;
     dirLuz1[1] = 0;

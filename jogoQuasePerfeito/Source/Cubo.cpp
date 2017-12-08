@@ -170,7 +170,7 @@ void Cubo::Colisao(vector <Bala*> balas, Player *play)
         {
             //  if(IntervaloX(play->getX()+(play->getLargura())) && IntervaloZ(play->getZ() + (play->getProfundidade()))){
             setVida(false);
-            play->setVida(false); //PERDEU COLISAO ENTRE PERSONAGEM E CUBO
+            play->setVida(false); //PERDEU, COLISAO ENTRE PERSONAGEM E CUBO
             //  }
         }
 
