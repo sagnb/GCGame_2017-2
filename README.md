@@ -7,7 +7,7 @@ Guilherme Neri Bustamante Sá - Graduando em Ciência da Computação
 Natiele Lucca - Graduanda em Ciênca da Computação  
 Wesley Ferreira de Ferreira - Graduando em Ciência da Computação
 
-Desenvolvido em C++ com as bibliotecas:  
+Desenvolvido em C++ para o sistema operacional Linux(Ubuntu e derivados) com as bibliotecas:  
 OpenGL Utility Toolkit(GLUT)  
 Simple DirectMedia Layer (SDL)
 
