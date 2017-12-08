@@ -25,10 +25,10 @@ sudo apt-get install freeglut3 freeglut3-dev binutils-gold
 ### Compilar o jogo
 Na pasta raiz digite execute o shell script run
 ```
-run
+./run
 ```
 
 Após compilado, é só executar
 ```
-jogo
+./jogo
 ```
