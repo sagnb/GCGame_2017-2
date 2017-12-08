@@ -3,14 +3,10 @@
 ## Space Invaders 3D
 
 Desenvolvido por:
-
-Guilherme Neri Bustamante Sá - Graduando em Ciência da Computação
-
+Guilherme Neri Bustamante Sá - Graduando em Ciência da Computação  
 Natiele Lucca - Graduanda em Ciênca da Computação
-
 Wesley Ferreira de Ferreira - Graduando em Ciência da Computação
 
-<br>
 Desenvolvido em C++ com as bibliotecas:
 
 OpenGL Utility Toolkit(GLUT)
