@@ -3,31 +3,36 @@
 
 using namespace std;
 
-Ponto::Ponto(){}
-Ponto::~Ponto(){}
+Ponto::Ponto() {}
+Ponto::~Ponto() {}
 
-Ponto::Ponto(float X, float Y,float Z){
+Ponto::Ponto(float X, float Y,float Z)
+{
     x = X;
     y = Y;
     z = Z;
 }
 
-float* Ponto::vector(float vetor[]){
+float* Ponto::vector(float vetor[])
+{
     vetor[0] = x;
     vetor[1] = y;
     vetor[2] = z;
     return vetor;
 }
 
-float Ponto::getX(){
+float Ponto::getX()
+{
     return x;
 }
 
-float Ponto::getY(){
+float Ponto::getY()
+{
     return y;
 }
 
-float Ponto::getZ(){
+float Ponto::getZ()
+{
     return z;
 }
 

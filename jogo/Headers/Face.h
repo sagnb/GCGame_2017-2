@@ -7,27 +7,28 @@
 #include "image.hpp"
 #include <GL/glut.h>
 
-class Face{
-    private:
-        std::vector<Aresta> arestas;
-        int n_arestas;
-	    float vetZ, vetY, vetX;
-	    float pZ;
+class Face
+{
+private:
+    std::vector<Aresta> arestas;
+    int n_arestas;
+    float vetZ, vetY, vetX;
+    float pZ;
 
-    public:
-        Face();
-        ~Face();
-        std::vector<Aresta> getArestas();
-        void addAresta(Aresta aresta);
-        void glFace(int comTextura, GLuint texture);
-	    void calcula_vetZ();
-        float getvetZ();
-        float getMinX();
-        float getMinY();
-        float getMinZ();
-        float getMaxX();
-        float getMaxY();
-        float getMaxZ();      
+public:
+    Face();
+    ~Face();
+    std::vector<Aresta> getArestas();
+    void addAresta(Aresta aresta);
+    void glFace(int comTextura, GLuint texture);
+    void calcula_vetZ();
+    float getvetZ();
+    float getMinX();
+    float getMinY();
+    float getMinZ();
+    float getMaxX();
+    float getMaxY();
+    float getMaxZ();
 };
 
 #endif

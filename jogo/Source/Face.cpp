@@ -9,27 +9,30 @@
 
 using namespace std;
 
-Face::Face(){}
-Face::~Face(){}
+Face::Face() {}
+Face::~Face() {}
 
-void Face::glFace(int comTextura, GLuint texture){
+void Face::glFace(int comTextura, GLuint texture)
+{
 
     //glBindTexture( GL_TEXTURE_2D, texture);
     glBegin(GL_POLYGON);
-        calcula_vetZ();
-        glNormal3f(vetX,vetY,vetZ);
-        for(int i = 0; i < arestas.size() ; i++){
-            /*if(i = 0) glTexCoord2f(0.0, 0.0);
-            if(i = 1) glTexCoord2f(0.0, 1.0);
-            if(i = 2) glTexCoord2f(1.0, 1.0);
-            if(i = 3) glTexCoord2f(1.0, 0.0);*/
-            arestas[i].glAresta();
-        }
+    calcula_vetZ();
+    glNormal3f(vetX,vetY,vetZ);
+    for(int i = 0; i < arestas.size() ; i++)
+    {
+        /*if(i = 0) glTexCoord2f(0.0, 0.0);
+        if(i = 1) glTexCoord2f(0.0, 1.0);
+        if(i = 2) glTexCoord2f(1.0, 1.0);
+        if(i = 3) glTexCoord2f(1.0, 0.0);*/
+        arestas[i].glAresta();
+    }
     glEnd();
 
 }
 
-void Face::addAresta(Aresta aresta){
+void Face::addAresta(Aresta aresta)
+{
     arestas.push_back(aresta);
 }
 
@@ -50,78 +53,78 @@ float Face::getvetZ()
 
 float Face::getMinX()
 {
-  float minX = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMinX() <= minX)
+    float minX = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      minX = this->arestas[i].getMinX();
+        if(this->arestas[i].getMinX() <= minX)
+        {
+            minX = this->arestas[i].getMinX();
+        }
     }
-  }
-  return minX;
+    return minX;
 }
 
 float Face::getMinY()
 {
-  float minY = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMinY() <= minY)
+    float minY = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      minY = this->arestas[i].getMinY();
+        if(this->arestas[i].getMinY() <= minY)
+        {
+            minY = this->arestas[i].getMinY();
+        }
     }
-  }
-  return minY;
+    return minY;
 }
 
 float Face::getMinZ()
 {
-  float minZ = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMinZ() <= minZ)
+    float minZ = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      minZ = this->arestas[i].getMinZ();
+        if(this->arestas[i].getMinZ() <= minZ)
+        {
+            minZ = this->arestas[i].getMinZ();
+        }
     }
-  }
-  return minZ;
+    return minZ;
 }
 
 float Face::getMaxX()
 {
-  float maxX = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMaxX() >= maxX)
+    float maxX = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      maxX = this->arestas[i].getMaxX();
+        if(this->arestas[i].getMaxX() >= maxX)
+        {
+            maxX = this->arestas[i].getMaxX();
+        }
     }
-  }
-  return maxX;
+    return maxX;
 }
 
 float Face::getMaxY()
 {
-  float maxY = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMaxY() >= maxY)
+    float maxY = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      maxY = this->arestas[i].getMaxY();
+        if(this->arestas[i].getMaxY() >= maxY)
+        {
+            maxY = this->arestas[i].getMaxY();
+        }
     }
-  }
-  return maxY;
+    return maxY;
 }
 
 float Face::getMaxZ()
 {
-  float maxZ = 0;
-  for(int i = 0; i < this->arestas.size(); i++)
-  {
-    if(this->arestas[i].getMaxZ() >= maxZ)
+    float maxZ = 0;
+    for(int i = 0; i < this->arestas.size(); i++)
     {
-      maxZ = this->arestas[i].getMaxZ();
+        if(this->arestas[i].getMaxZ() >= maxZ)
+        {
+            maxZ = this->arestas[i].getMaxZ();
+        }
     }
-  }
-  return maxZ;
+    return maxZ;
 }
