@@ -10,10 +10,7 @@
 
 #include "GL/glut.h"
 
-Inimigo::Inimigo()
-{
-
-}
+Inimigo::Inimigo(){}
 
 Inimigo::Inimigo(Object* objeto, float x, float y, float z, float raio, int velocidade)
 {

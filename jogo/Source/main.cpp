@@ -1,7 +1,6 @@
 #include "../Headers/Object.h"
 #include "../Headers/Ponto.h"
 #include "../Headers/Aresta.h"
-#include "../Headers/image.hpp"
 #include "../Headers/Player.hpp"
 #include "../Headers/Inimigo.hpp"
 #include "../Headers/Star.hpp"
@@ -14,7 +13,7 @@
 #include <string>
 #include <cstring>
 #include <sstream>
-#include <SDL/SDL_mixer.h> // sudo apt install libsdl-mixer2-dev
+#include <SDL/SDL_mixer.h> 
 #include <SDL/SDL.h>
 
 Mix_Music *musica = NULL; //música de fundo

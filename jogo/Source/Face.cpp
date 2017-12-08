@@ -15,16 +15,11 @@ Face::~Face() {}
 void Face::glFace(int comTextura, GLuint texture)
 {
 
-    //glBindTexture( GL_TEXTURE_2D, texture);
     glBegin(GL_POLYGON);
     calcula_vetZ();
     glNormal3f(vetX,vetY,vetZ);
     for(int i = 0; i < arestas.size() ; i++)
     {
-        /*if(i = 0) glTexCoord2f(0.0, 0.0);
-        if(i = 1) glTexCoord2f(0.0, 1.0);
-        if(i = 2) glTexCoord2f(1.0, 1.0);
-        if(i = 3) glTexCoord2f(1.0, 0.0);*/
         arestas[i].glAresta();
     }
     glEnd();
