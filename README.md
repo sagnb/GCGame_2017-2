@@ -2,15 +2,13 @@
 
 ## Space Invaders 3D
 
-Desenvolvido por:
+Desenvolvido por:  
 Guilherme Neri Bustamante Sá - Graduando em Ciência da Computação  
-Natiele Lucca - Graduanda em Ciênca da Computação
+Natiele Lucca - Graduanda em Ciênca da Computação  
 Wesley Ferreira de Ferreira - Graduando em Ciência da Computação
 
-Desenvolvido em C++ com as bibliotecas:
-
-OpenGL Utility Toolkit(GLUT)
-
+Desenvolvido em C++ com as bibliotecas:  
+OpenGL Utility Toolkit(GLUT)  
 Simple DirectMedia Layer (SDL)
 
 ## Instalação
@@ -27,10 +25,10 @@ sudo apt-get install freeglut3 freeglut3-dev binutils-gold
 ### Compilar o jogo
 Na pasta raiz digite execute o shell script run
 ```
-./run
+run
 ```
 
 Após compilado, é só executar
 ```
-./jogo
+jogo
 ```
